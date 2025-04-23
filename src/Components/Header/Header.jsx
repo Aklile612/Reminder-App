@@ -14,15 +14,20 @@ const Header = () => {
             <img src={icon} alt="icon" className='h-[40px] md:h-[70px] ' />
         </Link>
         <div>
-            <div className='flex  gap-20 text-white'>
+            <div className='flex  gap-17 text-white'>
                 <div className='group  hover:text-blue-700 transition-colors ml-[800px] mt-9  '>
                     <IoHomeOutline className='text-2xl'/>
-                    <span className='-ml-1.5'>Home</span>
+                    <span className='-ml-1.5 text-sm'>HOME</span>
                 </div>
-                <div className='group  hover:text-blue-700 transition-colors mt-9'>
+                <div className='group  hover:text-blue-700 transition-colors mt-8'>
                     <FaRegFolderOpen className='text-[26px]'/>
-                    <span className='-ml-1.5'>Courses</span>
+                    <span className='-ml-1.5 text-sm'>COURSES</span>
                 </div>
+                <div className='border-gray-600 border-l-2 h-15 mt-5 '></div>
+                <Link className='text-sm mt-9 -ml-6 hover:text-blue-700 transition-colors'>
+                  SIGN OUT
+                </Link>
+
             </div>
         </div>
       </div>
