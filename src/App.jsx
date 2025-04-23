@@ -2,14 +2,16 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Home from './Home/Home'
+import Home from './Components/Home/Home'
+import Header from './Components/Header/Header'
 
 function App() {
 
   return (
-    <div className='bg-[#09090B]'>
+    <>
+      <Header/>
       <Home/>
-    </div>
+    </>
   )
 }
 
