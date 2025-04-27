@@ -1,7 +1,7 @@
 import React from 'react'
 import EventCard from '../EventCard/EventCard'
 
-const Home = () => {
+const LandingPage = () => {
   return (
     <div className='mt-[140px] ml-[100px]'>
         <EventCard/>
@@ -9,4 +9,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default LandingPage
