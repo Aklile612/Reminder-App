@@ -9,14 +9,13 @@ import Footer from './Components/Footer/Footer'
 function App() {
 
   return (
-    <div className='flex flex-col h-[100vh]'>
-      <Header/>
-      <Home/>
-      <div className=''>
-        <Footer/>
-      </div>
-
-    </div>
+    <div className="flex flex-col min-h-screen">
+    <Header />
+    <main className="flex-grow">
+      <Home />
+    </main>
+    <Footer />
+  </div>
   )
 }
 
