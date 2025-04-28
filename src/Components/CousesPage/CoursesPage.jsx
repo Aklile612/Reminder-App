@@ -39,6 +39,9 @@ const CoursesPage = () => {
   return (
     <>
       <Header/>
+    <div className='flex '>
+        
+      
       {/* side bar  */}
       <div className='w-[300px]   h-[100vh] bg-[#221f1fe3]'>
           <div className=''>
@@ -115,7 +118,9 @@ const CoursesPage = () => {
                         {openCourseIndex === index && (
                           <div className="flex flex-col gap-1">
                             {acadamictimes.map((acadamic, subIndex) => (
-                              <div className='md:w-[190px] md:h-[30px] bg-gray-500 font-bold  flex  items-center text-white justify-between' key={subIndex}>{acadamic.name} <FaPlus/> 
+                              <div className='md:w-[190px] md:h-[30px] bg-gray-500 font-bold  flex  items-center text-white justify-between' key={subIndex}>{acadamic.name} <div onClick={()=>{setselectedcalander(acadamic);
+                                setselectedcourse(course.title)
+                              }}><FaPlus/></div> 
                               </div>
                               
                             
@@ -136,8 +141,30 @@ const CoursesPage = () => {
       </div>
 
       {/* main page */}
-      
+      {selectedcourse && selectedcalander &&(
 
+        <div className=' md:ml-[20vw] md:mt-[20vh] w-[400px] h-[30vh] bg-[#a06767] '>
+          <div className='flex justify-center'>
+            
+            <span className='text-white font-bold text-lg'>{selectedcourse}</span>
+          </div>
+          <div>
+            <span className="text-md text-white flex justify-center">What is the topic and the tittle of the portion?</span>
+          </div>
+          <div >
+            <form action="">
+              <div className='flex justify-center mt-4'>
+                <input type="text" placeholder='Type here....' className='border-white  border-2 w-[350px] h-10 pl-4 pt-2' />
+              </div>
+            </form>
+            
+          </div>
+          <div>
+            <span>Due Date?</span>
+          </div>
+      </div>
+      )}
+    </div>
       <div className=''>
 
       <Footer/> 
