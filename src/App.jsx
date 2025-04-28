@@ -5,6 +5,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import CoursesPage from './Components/CousesPage/CoursesPage'
+import AssistantPage from './Components/Ai Assistant/AssistantPage'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/courses' element={<CoursesPage/>}/>
+      <Route path='/aipage' element={<AssistantPage/>}/>
       </Routes>
     </>
   )

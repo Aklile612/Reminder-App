@@ -34,10 +34,10 @@ const Header = () => {
                     <span className='-ml-1.5 text-sm'>COURSES</span>
                 </Link>
 
-                <div className='group  hover:text-blue-700 transition-colors mt-8'>
+                <Link to='/aipage' className='group  hover:text-blue-700 transition-colors mt-8'>
                   <FaRobot className='text-[26px] md:ml-1.5 ' />
                   <span className='-ml-1.5 text-sm'>Ai Assistant</span>
-                </div>
+                </Link>
                 <div className='border-gray-600 border-l-2 h-15 mt-5 '></div>
                 <Link to="/signout" className='text-sm mt-9 -ml-6 hover:text-blue-700 transition-colors'>
                   SIGN OUT
