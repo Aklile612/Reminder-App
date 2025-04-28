@@ -25,10 +25,10 @@ const Header = () => {
         </Link>
         <div>
             <div className='flex  gap-10 '>
-                <div className='group  hover:text-blue-700 transition-colors ml-[800px] mt-9  '>
+                <Link to='/' className='group  hover:text-blue-700 transition-colors ml-[800px] mt-9  '>
                     <IoHomeOutline className='text-2xl'/>
                     <span className='-ml-1.5 text-sm'>HOME</span>
-                </div>
+                </Link>
                 <Link to='/courses' className='group  hover:text-blue-700 transition-colors mt-8'>
                     <FaRegFolderOpen className='text-[26px]'/>
                     <span className='-ml-1.5 text-sm'>COURSES</span>
