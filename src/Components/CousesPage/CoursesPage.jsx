@@ -11,6 +11,8 @@ const CoursesPage = () => {
   const [elecLink,setelectLink]=useState(false)
   const [informationLink,setinformationLink]=useState(false)
   const [openCourseIndex, setOpenCourseIndex] = useState(null)
+  const [selectedcourse,setselectedcourse]=useState(null)
+  const [selectedcalander,setselectedcalander]=useState(null)
   const courseName=[
     {title:"Data structure and Algor.."},
     {title:"Advanced DataBase"},
@@ -33,12 +35,12 @@ const CoursesPage = () => {
     {name:"Mid Exam"},
     {name:"Final Exam"},
   ]
-  // console.log(informationLink,elecLink)
+  // console.log(selectedcourse,selectedcalander.name)
   return (
     <>
       <Header/>
-
-      <div className='w-[300px]   h-[110vh] bg-[#221f1fe3]'>
+      {/* side bar  */}
+      <div className='w-[300px]   h-[100vh] bg-[#221f1fe3]'>
           <div className=''>
             <div className='flex flex-col md:gap-7 items-center justify-center'>
               <div className='flex items-center md:mt-11 justify-center md:w-[150px] md:h-[50px] rounded-2xl hover:shadow-amber-500 hover:shadow-sm hover:-translate-y-1 bg-gray-300'>
@@ -48,6 +50,8 @@ const CoursesPage = () => {
                 <span className='md:ml-2'>Information Science</span>
                 <div onClick={()=>{
                   setinformationLink(!informationLink)
+                  if (elecLink)
+                  setelectLink(!elecLink)
                 }}  className='md:mr-2'><FaAngleDown/></div>
               </div>
               <div className='flex flex-col'>
@@ -59,7 +63,9 @@ const CoursesPage = () => {
                       
                       <div className='flex flex-col '  >
 
-                        <div key={index} className='md:w-[230px] md:h-[30px] bg-amber-50 font-bold  flex  items-center  justify-between' >{course.title} <div onClick={() => setOpenCourseIndex(openCourseIndex === index ? null : index)}
+                        <div key={index} className='md:w-[230px] md:h-[30px] bg-amber-50 font-bold  flex  items-center  justify-between' >{course.title} <div onClick={() => setOpenCourseIndex(openCourseIndex === index ? null : index)
+                          
+                        }
                         ><FaAngleDown/></div >
 
                         </div>
@@ -67,7 +73,10 @@ const CoursesPage = () => {
                         {openCourseIndex === index && (
                           <div className="flex flex-col gap-1">
                             {acadamictimes.map((acadamic, subIndex) => (
-                              <div className='md:w-[190px] md:h-[30px] bg-gray-500 font-bold  flex  items-center text-white justify-between' key={subIndex}>{acadamic.name} <FaPlus/> 
+                              <div className='md:w-[190px] md:h-[30px] bg-gray-500 font-bold  flex  items-center text-white justify-between' key={subIndex}>{acadamic.name} <div 
+                              onClick={()=>{setselectedcalander(acadamic);
+                                setselectedcourse(course.title)
+                              }}><FaPlus/></div> 
                               </div>
                               
                             
@@ -87,6 +96,8 @@ const CoursesPage = () => {
                 <span className='md:ml-2'>Electrical Engineering</span>
                 <div onClick={()=>{
                   setelectLink(!(elecLink))
+                  if (informationLink)
+                  setinformationLink(!(informationLink))
                 }} className='md:mr-2'><FaAngleDown /></div>
               </div>
               <div className='flex flex-col'>
@@ -123,6 +134,9 @@ const CoursesPage = () => {
             </div>
           </div>
       </div>
+
+      {/* main page */}
+      
 
       <div className=''>
 
