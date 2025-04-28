@@ -12,7 +12,7 @@ const SideBar = () => {
                     <IoHomeOutline className='text-2xl   '/>
                     <span className='text-sm font-bold font-poppins text-gray-500'>HOME</span>
                 </Link>
-                <Link className='group flex gap-3 transition-colors '>
+                <Link to='/courses' className='group flex gap-3 transition-colors '>
                     <FaRegFolderOpen className=' text-[26px]'/>
                     <span className=' text-sm font-bold text-white'>COURSES</span>
                 </Link>
