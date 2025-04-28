@@ -10,6 +10,7 @@ import { FaPlus } from "react-icons/fa6";
 const CoursesPage = () => {
   const [elecLink,setelectLink]=useState(false)
   const [informationLink,setinformationLink]=useState(false)
+  const [openCourseIndex, setOpenCourseIndex] = useState(null)
   const courseName=[
     {title:"Data structure and Algor.."},
     {title:"Advanced DataBase"},
@@ -49,15 +50,39 @@ const CoursesPage = () => {
                   setinformationLink(!informationLink)
                 }}  className='md:mr-2'><FaAngleDown/></div>
               </div>
+              <div className='flex flex-col'>
+
                 {informationLink && (
-                <div>
+                  
                   <div className='flex flex-col gap-1 md:-mt-6'>
                     {courseName.map((course,index)=>(
-                      <div className='md:w-[230px] md:h-[30px] bg-amber-50 font-bold  flex items-center justify-between' key={index}>{course.title} <FaAngleDown/></div>
+                      
+                      <div className='flex flex-col '  >
+
+                        <div key={index} className='md:w-[230px] md:h-[30px] bg-amber-50 font-bold  flex  items-center  justify-between' >{course.title} <div onClick={() => setOpenCourseIndex(openCourseIndex === index ? null : index)}
+                        ><FaAngleDown/></div >
+
+                        </div>
+                        <div className='flex justify-center '>
+                        {openCourseIndex === index && (
+                          <div className="flex flex-col gap-1">
+                            {acadamictimes.map((acadamic, subIndex) => (
+                              <div className='md:w-[190px] md:h-[30px] bg-gray-500 font-bold  flex  items-center text-white justify-between' key={subIndex}>{acadamic.name} <FaPlus/> 
+                              </div>
+                              
+                            
+                            ))}
+                          </div>
+                        )}
+                        </div>
+                      </div>
+                      
+                      
                     ))}
                   </div>
-                </div>
+                
               )}
+              </div>
               <div className='md:w-[290px] md:h-[50px] bg-gray-400 items-center flex justify-between   '>
                 <span className='md:ml-2'>Electrical Engineering</span>
                 <div onClick={()=>{
