@@ -1,6 +1,7 @@
 import {StatusCodes} from "http-status-codes"
 import User from "../Model/user.model.js";
 import bcrypt from "bcrypt"
+import { generateToken } from "../utils/jwt.js";
 
 export const signup=async (req,res)=>{
     const {username,email,password}= req.body;
