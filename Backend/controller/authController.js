@@ -1,6 +1,6 @@
 import {StatusCodes} from "http-status-codes"
 import User from "../Model/user.model.js";
-import bcrypt from "bcrypt"
+import bcrypt, { compare } from "bcrypt"
 import { generateToken } from "../utils/jwt.js";
 
 export const signup=async (req,res)=>{
@@ -28,5 +28,32 @@ export const signup=async (req,res)=>{
     } catch (error) {
         console.log(error)
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"some error occured!",error})
+    }
+}
+
+
+export const login =async (req,res)=>{
+    const {email,password}=req.body;
+
+    try {
+        const findemail= await User.findOne({email})
+        if (!findemail){
+            return res.status(StatusCodes.BAD_REQUEST).json({message:"user is not registered"})
+        }
+
+        const comparePassword= await bcrypt.compare(password,findemail.password);
+
+        if (!comparePassword){
+            return res.status(StatusCodes.UNAUTHORIZED).json({message:"please enter the correct password!!!"})
+        }
+        const UserName=findemail.username;
+        res.status(StatusCodes.ACCEPTED).json({message:"user Logged in successfully",UserName})
+
+
+
+        
+    } catch (error) {
+        console.log(error)
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"Please try again, there might be an unknown error on the server",error})
     }
 }
