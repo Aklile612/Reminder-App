@@ -3,33 +3,48 @@ import Course from "../Model/courseModel.js"
 import Department from "../Model/departmentModel.js";
 
 
+//add department
+const addDepartment= async (req,res)=>{
+    const {department_name}=req.body;
 
-//add course
-const addCourse= async (req,res)=>{
-    const {department_name,coursename }=req.body;
-    
-    if (!department_name || !coursename ){
+    if (!department_name){
         return res.status(StatusCodes.BAD_REQUEST).json({message:"please fill all the fields"})
     }
 
     try {
-        let department = await Department.findOne({name:department_name})
-
-        if (!department){
-            department= new Department({
-                name:department_name
-            });
-            await department.save();
+        const findDepartment= await Department.findOne({department_name})
+        if (findDepartment){
+            return res.status(StatusCodes.CONFLICT).json({ message: "Department already exist" });  
         }
+        const newDepetment= new Department({
+            name:department_name
+        })
+        const newD=await newDepetment.save()
+        return res.status(StatusCodes.ACCEPTED).json({message:"saved the Department",newD})
+    } catch (error) {
+        console.log(error)
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"there is some issue with the server!"})   
+    }
+}
 
-        const findcourse= await Course.findOne({department:department._id,coursename})
+//add course
+const addCourse= async (req,res)=>{
+    const {coursename }=req.body;
+    const {department_id}=req.params;
+    if (!coursename ){
+        return res.status(StatusCodes.BAD_REQUEST).json({message:"please fill all the fields"})
+    }
+
+    try {
+
+        const findcourse= await Course.findOne({department:department_id,coursename})
 
         if (findcourse) {
             return res.status(StatusCodes.CONFLICT).json({ message: "Course already exists in this department" });
           }
         const addNewDepartmentandCourse= new Course({
             coursename:coursename,
-            department:department._id,
+            department:department_id,
         })
         const course= await addNewDepartmentandCourse.save()
         return res.status(StatusCodes.ACCEPTED).json({message:"saved the department and course",course})
@@ -42,19 +57,18 @@ const addCourse= async (req,res)=>{
 //find department
 
 const findDepartment= async  (req,res)=>{
-    const {department_id}= req.params;
-    if (!department_id) {
-        return res.status(StatusCodes.BAD_REQUEST).json({ message: "Department ID is required" });
-    }
+    
 
     try {
         // Find department by _id
-        const department = await Department.findById(department_id);
-
+        const department = await Department.find();
+        if (!department || department.length===0){
+            return res.status(StatusCodes.BAD_REQUEST).json({message:"No Departments Yet"})
+        }
         return res.status(StatusCodes.OK).json({ department });
     } catch (error) {
         console.log(error);
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error finding department by ID" });
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error finding department " });
     }
 
 }
@@ -68,7 +82,7 @@ const findcourse=async (req,res)=>{
         return res.status(StatusCodes.BAD_REQUEST).json({ message: "Department name is required" });
     }
     try {
-        const courses=await Course.find({department:department_id})
+        const courses=await Course.find({department:department_id}).sort({ createdAt: -1 })
 
         if(!courses||courses.length===0){
             return res.status(StatusCodes.BAD_REQUEST).json({message:"No course exist in this department!"})
@@ -81,4 +95,4 @@ const findcourse=async (req,res)=>{
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"there is some issue with the server!"})
     }
 }
-export  {addCourse,findDepartment};
+export  {addDepartment,addCourse,findDepartment,findcourse};
