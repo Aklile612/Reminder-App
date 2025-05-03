@@ -1,7 +1,7 @@
 import {StatusCodes} from "http-status-codes"
 import Calendar from "../Model/calander.module.js";
 
-
+//to add calander
 const addCalander=async (req,res)=>{
     const {topic,date,remindertime,quiz,assignment,mid,final}=req.body;
     const {course_id}=req.params;
