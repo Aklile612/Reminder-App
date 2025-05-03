@@ -6,11 +6,7 @@ const calendarSchema = new Schema({
         ref: 'Course',
         required: true
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
+    
     topic: {
         type: String,
         required: true
@@ -24,16 +20,16 @@ const calendarSchema = new Schema({
         required: true
     },
     quiz: {
-        type: Date
+        type: String
     },
     assignment: {
-        type: Date
+        type: String
     },
     mid: {
-        type: Date
+        type: String
     },
     final: {
-        type: Date
+        type: String
     }
 }, {
     timestamps: true 
