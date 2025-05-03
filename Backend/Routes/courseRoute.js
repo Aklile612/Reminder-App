@@ -1,9 +1,11 @@
 import { Router } from "express";
-import {addCourse,findDepartment} from "../controller/courseController.js";
+import {addCourse,addDepartment,findcourse,findDepartment} from "../controller/courseController.js";
 const router= Router();
 
 
-router.post("/addcourse",addCourse)
-router.get("/finddepartment/:department_id",findDepartment)
+router.post("/addcourse/:department_id",addCourse)
+router.post("/adddepartment",addDepartment)
+router.get("/finddepartment/",findDepartment)
+router.get("/findcourse/:department_id",findcourse)
 
 export default router;
