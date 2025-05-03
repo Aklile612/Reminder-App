@@ -1,41 +1,44 @@
 import mongoose, { Schema } from "mongoose";
 
-
-const calanderschema= new mongoose.Schema({
-    "coursename":{
-        type:Schema.Types.ObjectId,
-        ref:'Course'
+const calendarSchema = new Schema({
+    course: {
+        type: Schema.Types.ObjectId,
+        ref: 'Course',
+        required: true
     },
-    "username":{
-        type:Schema.Types.ObjectId,
-        ref:'User'
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
-    "topic":{
-        type:String,
-        required:true
+    topic: {
+        type: String,
+        required: true
     },
-    "date":{
-        type:Date,
-        required:true
+    date: {
+        type: Date,
+        required: true
     },
-    "remindertime":{
-        type:Date,
-        required:true
+    remindertime: {
+        type: Date,
+        required: true
     },
-    "Quiz":{
-        type:Date,
-        required:false
+    quiz: {
+        type: Date
     },
-    "Assignment":{
-        type:Date,
-        required:false
+    assignment: {
+        type: Date
     },
-    "Mid":{
-        type:Date,
-        required:false
+    mid: {
+        type: Date
     },
-    "Final":{
-        type:Date,
-        required:false
+    final: {
+        type: Date
     }
-})
+}, {
+    timestamps: true 
+});
+
+const Calendar = mongoose.model("Calendar", calendarSchema);
+
+export default Calendar;
