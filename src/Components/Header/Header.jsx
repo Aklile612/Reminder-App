@@ -44,11 +44,11 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className='md:w-[90px] md:h-9 bg-[#3b3a3a] rounded-[10px] flex gap-1.5 hover:ease-out hover:scale-110 transition-all  justify-center items-center border-[1px]'>
+          <Link to="/getstarted" className='group md:w-[90px] md:h-9 bg-[#3b3a3a] rounded-[10px] flex gap-1.5 hover:ease-out hover:scale-110 transition-all  justify-center items-center border-[1px]'>
             
               <span className='text-white font-bold text-sm'>Logout</span>
               <LuLogOut className='text-white' />
-          </div>
+          </Link>
           </div>
         </div>
       </div>
