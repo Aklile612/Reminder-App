@@ -39,7 +39,7 @@ const addCalander=async (req,res)=>{
 const allevents=async (req,res)=>{
     try {
         const findEvents= await Calendar.find().sort({ date: -1 }).populate('course', 'coursename');
-        if (!findEvents || findEvents===0){
+        if (!findEvents || findEvents.length===0){
             return res.status(StatusCodes.OK).json({message:"No recent calanders"})
         }
         return res.status(StatusCodes.OK).json({ findEvents });
@@ -48,4 +48,22 @@ const allevents=async (req,res)=>{
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"There was an issue fetching the calendar!"})
     }
 }
-export {addCalander,allevents}
+
+// see one event 
+const singleEventByCalander=async (req,res)=>{
+    const {calander_id}=req.params;
+
+    try {
+        const findSingleEvent= await Calendar.findById(calander_id);
+
+        if(!calander_id|| calander_id.length===0){
+            return res.status(StatusCodes.OK).json({message:"No Details for this calander"})
+        } 
+
+        res.status(StatusCodes.OK).json({findSingleEvent})
+    } catch (error) {
+        console.log(error)
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"There was an issue fetching the details pf the actions!"})
+    }
+}
+export {addCalander,allevents,singleEventByCalander}
