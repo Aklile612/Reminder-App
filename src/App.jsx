@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import CoursesPage from './Components/CousesPage/CoursesPage'
 import AssistantPage from './Components/Ai Assistant/AssistantPage'
+import GetStarted from './Components/Get Started/GetStarted'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/courses' element={<CoursesPage/>}/>
       <Route path='/aipage' element={<AssistantPage/>}/>
+      <Route path='/getstarted' element={<GetStarted/>}/>
       </Routes>
     </>
   )
