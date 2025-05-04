@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const calendarSchema = new Schema({
     course: {
         type: Schema.Types.ObjectId,
-        ref: 'Course',
+        ref: 'course',
         required: true
     },
     
