@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addCalander, allevents, singleEventByCalander } from "../controller/calanderController.js";
+import { addCalander, allEventByCoursId, allevents, singleEventByCalander } from "../controller/calanderController.js";
 
 
 const router= Router()
@@ -7,5 +7,6 @@ const router= Router()
 router.post("/addcalander/:course_id",addCalander);
 router.get("/allcalanders",allevents)
 router.get("/singlecalanderdetail/:calander_id",singleEventByCalander)
+router.get("/singlecoursecalander/:course_id",allEventByCoursId)
 
 export default router
