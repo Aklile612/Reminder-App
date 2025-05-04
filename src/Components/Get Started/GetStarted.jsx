@@ -1,6 +1,9 @@
 import React from 'react'
 import Header from "../Header/Header.jsx"
 import Footer from "../Footer/Footer.jsx"
+import { Link } from 'react-router-dom'
+import { MdOutlineAccessTimeFilled } from 'react-icons/md'
+import { FaBrain, FaGraduationCap } from 'react-icons/fa'
 const GetStarted = () => {
   return (
     <div>
@@ -12,14 +15,28 @@ const GetStarted = () => {
       </div>
 
         {/* get strted button */}
-        <div className='flex justify-center items-center  md:w-[10vw] md:h-[50px] md:mt-[10vh] md:ml-[44vw] bg-[#1F2937] rounded-[6px]'>
+        <Link to="/" className=' hover:ease-out hover:scale-110 transition-all delay-75 hover:border-amber-600 hover:border-2 flex justify-center items-center  md:w-[10vw] md:h-[50px] md:mt-[6vh] md:ml-[44vw] bg-[#1F2937] rounded-[6px]'>
             <span className='text-white font-bold text-sm'>Get Started</span>
-        </div>
+        </Link>
 
 
         {/* features */}
-        <div>
-
+        <div className='md:mt-[20vh] md:mx-[10vw] md:mb-[45px] flex gap-14 '>
+            <div className='flex flex-col'>
+                <span className='md:ml-[9vw] animate-pulse  text-3xl'><MdOutlineAccessTimeFilled /></span>
+                <span className='md:ml-[6vw] md:mb-3 font-bold text-lg'>Best Scheduling</span>
+                <span className='max-w-[55vh] text-sm break-words'>Best scheduling that will adapt your routine and prefences</span>
+            </div>
+            <div className='flex flex-col'>
+                <span className='md:ml-[9vw] animate-pulse  text-3xl'><FaGraduationCap/></span>
+                <span className='md:ml-[6vw] md:mb-3 font-bold text-lg'>Course Management</span>
+                <span className='max-w-[55vh] text-sm break-words'>Keep track your courses assignmentes and deadlines effortiessly.</span>
+            </div>
+            <div className='flex flex-col'>
+                <span className='md:ml-[9vw] animate-pulse  text-3xl'><FaBrain /></span>
+                <span className='md:ml-[6vw] md:mb-3 font-bold text-lg'>Ai Assistant</span>
+                <span className='max-w-[55vh] text-sm break-words'>Get intellegient suggestions and get fast response about the topic </span>
+            </div>
         </div>
 
         <Footer/>
