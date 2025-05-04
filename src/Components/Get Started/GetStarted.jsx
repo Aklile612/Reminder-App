@@ -12,8 +12,8 @@ const GetStarted = () => {
       </div>
 
         {/* get strted button */}
-        <div>
-
+        <div className='flex justify-center items-center  md:w-[10vw] md:h-[50px] md:mt-[10vh] md:ml-[44vw] bg-[#1F2937] rounded-[6px]'>
+            <span className='text-white font-bold text-sm'>Get Started</span>
         </div>
 
 
