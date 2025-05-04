@@ -49,7 +49,7 @@ const allevents=async (req,res)=>{
     }
 }
 
-// see one event 
+// see one event by calander
 const singleEventByCalander=async (req,res)=>{
     const {calander_id}=req.params;
 
@@ -63,7 +63,19 @@ const singleEventByCalander=async (req,res)=>{
         res.status(StatusCodes.OK).json({findSingleEvent})
     } catch (error) {
         console.log(error)
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"There was an issue fetching the details pf the actions!"})
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"There was an issue fetching the details of the actions!"})
     }
 }
-export {addCalander,allevents,singleEventByCalander}
+// see a calander by course
+const allEventByCoursId=async (req,res)=>{
+    const {course_id}= req.params;
+
+    try {
+        const findTheCalanders = await Calendar.find({ course: course_id }).sort({ date: -1 }).populate('course', 'coursename');
+        return res.status(StatusCodes.OK).json({findTheCalanders})
+    } catch (error) {
+        console.log(error)
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"There was an issue fetching the details of the actions!"})
+    }
+}
+export {addCalander,allevents,singleEventByCalander,allEventByCoursId}
