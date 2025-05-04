@@ -7,6 +7,7 @@ import Home from './Home'
 import CoursesPage from './Components/CousesPage/CoursesPage'
 import AssistantPage from './Components/Ai Assistant/AssistantPage'
 import GetStarted from './Components/Get Started/GetStarted'
+import Login from './Components/Login/Login'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='/courses' element={<CoursesPage/>}/>
       <Route path='/aipage' element={<AssistantPage/>}/>
       <Route path='/getstarted' element={<GetStarted/>}/>
+      <Route path='/login' element={<Login/>}/>
       </Routes>
     </>
   )
