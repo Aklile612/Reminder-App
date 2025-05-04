@@ -15,7 +15,7 @@ const GetStarted = () => {
       </div>
 
         {/* get strted button */}
-        <Link to="/" className=' hover:ease-out hover:scale-110 transition-all delay-75 hover:border-amber-600 hover:border-2 flex justify-center items-center  md:w-[10vw] md:h-[50px] md:mt-[6vh] md:ml-[44vw] bg-[#1F2937] rounded-[6px]'>
+        <Link to="/login" className=' hover:ease-out hover:scale-110 transition-all delay-75 hover:border-amber-600 hover:border-2 flex justify-center items-center  md:w-[10vw] md:h-[50px] md:mt-[6vh] md:ml-[44vw] bg-[#1F2937] rounded-[6px]'>
             <span className='text-white font-bold text-sm'>Get Started</span>
         </Link>
 
