@@ -2,51 +2,58 @@ import React from 'react'
 import icon from "../../assets/icon.webp"
 import { Link } from 'react-router-dom'
 import { IoHomeOutline } from "react-icons/io5";
-import { FaRegFolderOpen } from "react-icons/fa";
+import { FaBook, FaRegFolderOpen } from "react-icons/fa";
 import ai from "../../assets/ai.png"
 import { FaRobot } from "react-icons/fa6";
+import { IoIosNotificationsOutline } from 'react-icons/io';
+import { MdHome } from 'react-icons/md';
+import { LuLogOut } from 'react-icons/lu';
 
 
 
 const Header = () => {
   return (
     <div >
-      <div className='flex bg-blue-950 md:h-8  justify-between items-center'>
-        <div className='flex bg-red-600 w-[400px] md:h-8 items-center'>
-          <span className='md:ml-2 text-white font-bold text-sm'>Be Organized. We take care of the calander!!</span>
+      <div className='flex bg-blue-950 md:h-13  justify-between items-center'>
+        <div className='flex md:gap-3'>
+          <div className='text-white text-4xl md:ml-[80px]'>
+            <IoIosNotificationsOutline />
+          </div>
+          <div className='flex items-center'>
+            <span className='text-white font-bold '>Reminder App</span>
+          </div>
         </div>
-        <div className='justify-end'>
-          <span className='md:mr-1 text-white font-bold'>Welcome: Aklile</span>
-        </div>
-      </div>
-      <div className='flex bg-[#f2e6e6] z-20 shadow-md shadow-[#968e8e] h-[50px] md:h-[100px]'>
-        <Link className='ml-[20px] md:ml-[100px] pt-1 md:pt-2.5 '>
-            <img src={icon} alt="icon" className='h-[40px] md:h-[70px] ' />
-        </Link>
-        <div>
-            <div className='flex  gap-10 '>
-                <Link to='/' className='group  hover:text-blue-700 transition-colors ml-[800px] mt-9  '>
-                    <IoHomeOutline className='text-2xl'/>
-                    <span className='-ml-1.5 text-sm'>HOME</span>
+        <div className=''>
+          <div className='flex justify-center text-center items-center md:gap-6 md:mr-3'>
+            <div className=''>
+                <Link to='/' className='group flex md:gap-2 text-white hover:text-blue-700 transition-colors'>
+                    <MdHome className='text-2xl '/>
+                    <span className='  text-sm md:mt-1'  >HOME</span>
                 </Link>
-                <Link to='/courses' className='group  hover:text-blue-700 transition-colors mt-8'>
-                    <FaRegFolderOpen className='text-[26px]'/>
-                    <span className='-ml-1.5 text-sm'>COURSES</span>
-                </Link>
-
-                <Link to='/aipage' className='group  hover:text-blue-700 transition-colors mt-8'>
-                  <FaRobot className='text-[26px] md:ml-1.5 ' />
-                  <span className='-ml-1.5 text-sm'>Ai Assistant</span>
-                </Link>
-                <div className='border-gray-600 border-l-2 h-15 mt-5 '></div>
-                <Link to="/signout" className='text-sm mt-9 -ml-6 hover:text-blue-700 transition-colors'>
-                  SIGN OUT
-                </Link>
-
             </div>
+            <div>
+                <Link to='/courses' className='group flex md:gap-2 text-white hover:text-blue-700 transition-colors '>
+                    <FaBook className=' md:mt-1'/>
+                    <span className='text-sm  md:mt-0.5'>COURSES</span>
+                </Link>
+            </div>
+          <div>
+            <Link to='/aipage' className='group flex md:gap-2 text-white hover:text-blue-700 transition-colors '>
+              <FaRobot className=' text-[20px]'/>
+              <span className=' text-sm'>AI</span>
+            </Link>
+          </div>
+
+          <div className='md:w-[90px] md:h-9 bg-[#3b3a3a] rounded-[10px] flex gap-1.5 hover:ease-out hover:scale-110 transition-all  justify-center items-center border-[1px]'>
+            
+              <span className='text-white font-bold text-sm'>Logout</span>
+              <LuLogOut className='text-white' />
+          </div>
+          </div>
         </div>
       </div>
-    </div>
+      
+      </div>
   )
 }
 
