@@ -1,6 +1,6 @@
 import {StatusCodes} from "http-status-codes"
 import Calendar from "../Model/calander.module.js";
-
+import Course from "../Model/courseModel.js";
 
 //to add calander
 const addCalander=async (req,res)=>{
@@ -38,7 +38,7 @@ const addCalander=async (req,res)=>{
 // show all events
 const allevents=async (req,res)=>{
     try {
-        const findEvents= await Calendar.find().sort({ date: 1 }).populate('course', 'name');
+        const findEvents= await Calendar.find().sort({ date: -1 }).populate('course', 'coursename');
         if (!findEvents || findEvents===0){
             return res.status(StatusCodes.OK).json({message:"No recent calanders"})
         }
