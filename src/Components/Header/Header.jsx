@@ -14,7 +14,7 @@ import { LuLogOut } from 'react-icons/lu';
 const Header = () => {
   return (
     <div >
-      <div className='flex bg-blue-950 md:h-13  justify-between items-center'>
+      <div className='flex bg-[#1F2937] md:h-13  justify-between items-center'>
         <div className='flex md:gap-3'>
           <div className='text-white text-4xl md:ml-[80px]'>
             <IoIosNotificationsOutline />
