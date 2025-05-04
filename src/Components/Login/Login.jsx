@@ -18,9 +18,9 @@ const Login = () => {
             <span className='ml-5 text-white text-sm md:mb-2'>Username</span>
             <div className='relative'>
                 <input 
-                className='border-gray-700 border-[1px] w-[300px] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs placeholder:font-bold' 
-                type="email"
-                name='email'
+                className=' w-[300px] rounded-[6px] bg-[#374151] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs placeholder:font-bold' 
+                type="text"
+                name='username'
                 placeholder="Enter username"
                 />
                 <FaUser className="absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500" /> 
@@ -30,7 +30,7 @@ const Login = () => {
             <span className='ml-5 text-white text-sm md:mb-2'>Email</span>
             <div className='relative'>
                 <input 
-                className='border-gray-700 border-[1px] w-[300px] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs placeholder:font-bold' 
+                className='border-gray-700  w-[300px] rounded-[6px] bg-[#374151] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs placeholder:font-bold' 
                 type="email"
                 name='email'
                 placeholder="Enter Email"
@@ -42,9 +42,9 @@ const Login = () => {
             <span className='ml-5 text-white text-sm md:mb-2'>Password</span>
             <div className='relative'>
                 <input 
-                className='border-gray-700 border-[1px] w-[300px] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs' 
-                type="email"
-                name='email'
+                className='border-gray-700 ] w-[300px] rounded-[6px] bg-[#374151] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs' 
+                type="text"
+                name='password'
                 placeholder="Enter Password"
                 />
                 <AiTwotoneQuestionCircle className="absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500" /> 
@@ -53,7 +53,7 @@ const Login = () => {
 
           <Link 
             to='/'
-            className='ml-5 flex justify-center items-center group hover:scale-110 ease-out transition-all w-[300px] h-12 bg-gray-500 text-center  text-sm text-white font-semibold rounded-[6px]'>
+            className='ml-5 md:mt-2 flex justify-center items-center group hover:scale-110 ease-out transition-all w-[300px] h-12 bg-gray-500 text-center  text-sm text-white font-semibold rounded-[6px]'>
             <span>Create Account</span>
           </Link>
         </form>
