@@ -22,20 +22,20 @@ const GetStarted = () => {
 
         {/* features */}
         <div className='md:mt-[20vh] md:mx-[10vw] md:mb-[50px] flex gap-14 '>
-            <div className='flex flex-col group hover:shadow-2xl hover:shadow-gray-500 hover:rounded-[6px]'>
+            <div className='flex flex-col group  hover:shadow-2xl hover:shadow-gray-500 rounded-[6px] px-1 hover:-translate-y-2'>
                 <span className='md:ml-[9vw] animate-pulse  text-3xl'><MdOutlineAccessTimeFilled /></span>
                 <span className='md:ml-[6vw] md:mb-3 font-bold text-lg'>Best Scheduling</span>
-                <span className='max-w-[55vh] text-sm break-words'>Best scheduling that will adapt your routine and prefences</span>
+                <span className='max-w-[55vh] text-sm break-words font-bold'>Best scheduling that will adapt your routine and prefences</span>
             </div>
-            <div className='flex flex-col group hover:shadow-2xl hover:shadow-gray-500 hover:rounded-[6px]'>
+            <div className='flex flex-col group  hover:shadow-2xl hover:shadow-gray-500 rounded-[6px] px-1 hover:-translate-y-2'>
                 <span className='md:ml-[9vw] animate-pulse  text-3xl'><FaGraduationCap/></span>
-                <span className='md:ml-[6vw] md:mb-3 font-bold text-lg'>Course Management</span>
-                <span className='max-w-[55vh] text-sm break-words'>Keep track your courses assignmentes and deadlines effortiessly.</span>
+                <span className='md:ml-[4vw] md:mb-3 font-bold text-lg'>Course Management</span>
+                <span className='max-w-[55vh] text-sm break-words font-bold'>Keep track your courses assignmentes and deadlines effortiessly.</span>
             </div>
-            <div className='flex flex-col group hover:shadow-2xl hover:shadow-gray-500 hover:rounded-[6px]'>
+            <div className='flex flex-col group  hover:shadow-2xl hover:shadow-gray-500 rounded-[6px] px-2 hover:-translate-y-2'>
                 <span className='md:ml-[9vw] animate-pulse  text-3xl'><FaBrain /></span>
                 <span className='md:ml-[6vw] md:mb-3 font-bold text-lg'>Ai Assistant</span>
-                <span className='max-w-[55vh] text-sm break-words'>Get intellegient suggestions and get fast response about the topic </span>
+                <span className='max-w-[55vh] text-sm break-words font-bold'>Get intellegient suggestions and get fast response about the topic </span>
             </div>
         </div>
 
