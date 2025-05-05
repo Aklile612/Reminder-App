@@ -7,7 +7,7 @@ const SideBar = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'Dashboard', icon: <MdHome className='text-2xl text-white' />, path: '/' },
+    { name: 'Dashboard', icon: <MdHome className='text-2xl text-white' />, path: '/home' },
     { name: 'Courses', icon: <FaGraduationCap className='text-2xl text-white' />, path: '/courses' },
     { name: 'AI Assistant', icon: <FaRobot className='text-2xl text-white' />, path: '/aipage' }
   ];
