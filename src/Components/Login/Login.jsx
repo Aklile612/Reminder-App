@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
-    <div className='bg-[#111827] h-[100vh] w-[100vw] flex justify-center items-center'>
-      <div className='flex flex-col  w-[26vw] h-[80vh] bg-[#1F2937] border-amber-50 '>
+    <div className='bg-[#111827] h-[100vh] w-[100vw]  flex justify-center items-center'>
+      <div className='flex flex-col  w-[26vw] h-[80vh] bg-[#1F2937] rounded-[10px] border-amber-50 '>
         <div className='flex flex-col justify-center items-center gap-2 mb-10'>
           <span className='text-white md:pt-5 text-3xl'>Register</span>
           <span className='text-white text-sm'>Create Your Account</span>
