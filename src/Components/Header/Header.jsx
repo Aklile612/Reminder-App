@@ -15,14 +15,14 @@ const Header = () => {
   return (
     <div >
       <div className='flex bg-[#1F2937] md:h-13  justify-between items-center'>
-        <div className='flex md:gap-3'>
+        <Link to='/' className='flex md:gap-3 hover:bg-'>
           <div className='text-white text-4xl md:ml-[80px]'>
             <IoIosNotificationsOutline />
           </div>
           <div className='flex items-center'>
             <span className='text-white font-bold '>Reminder App</span>
           </div>
-        </div>
+        </Link>
         <div className=''>
           <div className='flex justify-center text-center items-center md:gap-6 md:mr-3'>
             <div className=''>
