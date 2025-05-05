@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const EventCard = () => {
   return (
-    <div className=' group hover:-translate-y-1 md:w-[70vw] shadow-md md:h-[25vh] border-[1px] rounded-[6px] border-amber-50 bg-[#ffffff] '>
+    <div className=' group hover:-translate-y-1 md:w-[50vw] shadow-md md:h-[25vh] border-[1px] rounded-[6px] border-amber-50 bg-[#ffffff] '>
       <div>
         <div className='md:ml-5 md:mt-4 flex justify-between'>
           <div className='text-md '>Data Structure And Algorizm</div>
