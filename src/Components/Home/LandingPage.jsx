@@ -1,10 +1,13 @@
 import React from 'react'
 import EventCard from '../EventCard/EventCard'
 import SideBar from '../SideBar/SideBar'
+import RightSideBar from '../Right Side Bar/RightSideBar'
 
 const LandingPage = () => {
   return (
-    <div className=' flex bg-gray-200  '>
+    <div className='flex justify-between'>
+
+    <div className=' flex bg-gray-200 w-[120vw]  '>
       <div className=''>
         <SideBar/>
       </div>
@@ -14,6 +17,10 @@ const LandingPage = () => {
       <div className='mt-[140px] ml-[] flex md:-ml-[16vw]'>
         <EventCard/>
       </div>
+    </div>
+    <div className='bg-gray-200'>
+      <RightSideBar/>
+    </div>
     </div>
   )
 }
