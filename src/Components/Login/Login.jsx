@@ -52,7 +52,7 @@ const Login = () => {
         </div>
 
           <Link 
-            to='/'
+            to='/home'
             className='ml-5 md:mt-2 flex justify-center items-center group hover:scale-110 ease-out transition-all w-[300px] h-12 bg-gray-500 text-center  text-sm text-white font-semibold rounded-[6px]'>
             <span>Create Account</span>
           </Link>
