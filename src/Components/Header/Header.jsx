@@ -26,7 +26,7 @@ const Header = () => {
         <div className=''>
           <div className='flex justify-center text-center items-center md:gap-6 md:mr-3'>
             <div className=''>
-                <Link to='/' className='group flex md:gap-2 text-white hover:text-blue-700 transition-colors'>
+                <Link to='/home' className='group flex md:gap-2 text-white hover:text-blue-700 transition-colors'>
                     <MdHome className='text-2xl '/>
                     <span className='  text-sm md:mt-1'  >HOME</span>
                 </Link>
