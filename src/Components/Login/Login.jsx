@@ -57,6 +57,9 @@ const Login = () => {
             <span>Create Account</span>
           </Link>
         </form>
+        <Link className='flex justify-center md:mt-2'>
+          <span className='text-white text-xs'>Already have account. Login</span>
+        </Link>
       </div>
     </div>
   )
