@@ -3,7 +3,7 @@ import icon from "../../assets/icon.webp"
 import { Link } from 'react-router-dom'
 import { IoHomeOutline } from "react-icons/io5";
 import { FaBook, FaRegFolderOpen } from "react-icons/fa";
-import ai from "../../assets/ai.png"
+
 import { FaRobot } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { MdHome } from 'react-icons/md';
@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <div >
       <div className='flex bg-[#1F2937] md:h-13  justify-between items-center'>
-        <Link to='/' className='flex md:gap-3 hover:bg-'>
+        <Link to='/home' className='flex md:gap-3 hover:bg-'>
           <div className='text-white text-4xl md:ml-[80px]'>
             <IoIosNotificationsOutline />
           </div>
