@@ -1,10 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiTwotoneQuestionCircle } from 'react-icons/ai'
 import { FaUser } from 'react-icons/fa'
 import { TfiEmail } from 'react-icons/tfi'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from '../../../axiosBase'
 
 const Login = () => {
+  const [errmsg,seterrmsg]=useState("");
+  const navigator=useNavigate();
+  const [formData,setformData]=useState({
+    "username":"",
+    "email":"",
+    "password":""
+  })
+  const handeleChange=(event)=>{
+    setformData({
+      ...formData,
+      [event.target.name]:event.target.value
+    })
+  }
+  const handleSubmit=async (event)=>{
+    event.preventDefault();
+    const userValue=formData.username;
+    const emailValue=formData.email;
+    const passwordValue=formData.password;
+
+    if(!emailValue || !userValue || !passwordValue){
+      alert("lease enter a value");
+      return;
+    }
+    try {
+      const {data}=axios.post("/signup",{
+        username:userValue,
+        email:emailValue,
+        password:passwordValue
+      })
+      seterrmsg("")
+      navigator("/home")
+      
+    } catch (error) {
+      if(error.response){
+        seterrmsg(error.response.data.message)
+        console.log(error.reponse.data)
+      }
+    }
+
+  }
   return (
     <div className='bg-[#111827] h-[100vh] w-[100vw]  flex justify-center items-center'>
       <div className='flex flex-col  w-[26vw] h-[80vh] bg-[#1F2937] rounded-[10px] border-amber-50 '>
