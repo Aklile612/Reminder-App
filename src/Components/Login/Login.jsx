@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiTwotoneQuestionCircle } from 'react-icons/ai'
 import { FaUser } from 'react-icons/fa'
 import { TfiEmail } from 'react-icons/tfi'
@@ -7,12 +7,24 @@ import axios from '../../../axiosBase'
 
 const Login = () => {
   const [errmsg,seterrmsg]=useState("");
+  const [loginMessage,setloginMessage]=useState(false);
+  const [success, setSuccess] = useState(false);
   const navigator=useNavigate();
   const [formData,setformData]=useState({
     "username":"",
     "email":"",
     "password":""
   })
+  useEffect(() => {
+    if (success) {
+      setloginMessage(true);
+      const timeout = setTimeout(() => {
+        navigator("/home")
+      }, 6000);
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [success]);
   const handeleChange=(event)=>{
     setformData({
       ...formData,
@@ -30,18 +42,21 @@ const Login = () => {
       return;
     }
     try {
-      const {data}=axios.post("/signup",{
+      const {data}=await axios.post("/auth/signup",{
         username:userValue,
         email:emailValue,
         password:passwordValue
       })
       seterrmsg("")
-      navigator("/home")
+      setSuccess(true)
       
+      
+      console.log(data)
     } catch (error) {
       if(error.response){
         seterrmsg(error.response.data.message)
-        console.log(error.reponse.data)
+        console.log(error.response.data)
+        alert(error.response.data.msg)
       }
     }
 
@@ -53,8 +68,10 @@ const Login = () => {
           <span className='text-white md:pt-5 text-3xl'>Register</span>
           <span className='text-white text-sm'>Create Your Account</span>
         </div>
-
-        <form className='flex flex-col gap-5'>
+        <div className='-mt-2 flex justify-center items-center text-green-500  text-sm  font-bold'>
+          {loginMessage && "successfully Loged In.Redirecting to Home page"}
+        </div>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
         <div className='flex flex-col'>
             <span className='ml-5 text-white text-sm md:mb-2'>Username</span>
             <div className='relative'>
@@ -62,7 +79,9 @@ const Login = () => {
                 className=' w-[300px] rounded-[6px] bg-[#374151] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs placeholder:font-bold' 
                 type="text"
                 name='username'
+                value={formData.username}
                 placeholder="Enter username"
+                onChange={handeleChange}
                 />
                 <FaUser className="absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500" /> 
             </div>
@@ -75,6 +94,8 @@ const Login = () => {
                 type="email"
                 name='email'
                 placeholder="Enter Email"
+                value={formData.email}
+                onChange={handeleChange}
                 />
                 <TfiEmail className="absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500" /> 
             </div>
@@ -84,19 +105,21 @@ const Login = () => {
             <div className='relative'>
                 <input 
                 className='border-gray-700 ] w-[300px] rounded-[6px] bg-[#374151] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs' 
-                type="text"
+                type="password"
                 name='password'
                 placeholder="Enter Password"
+                onChange={handeleChange}
+                value={formData.password}
                 />
                 <AiTwotoneQuestionCircle className="absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500" /> 
             </div>
         </div>
 
-          <Link 
-            to='/home'
+          <button type='submit' 
+            
             className='ml-5 md:mt-2 flex justify-center items-center group hover:scale-110 ease-out transition-all w-[300px] h-12 bg-gray-500 text-center  text-sm text-white font-semibold rounded-[6px]'>
             <span>Create Account</span>
-          </Link>
+          </button>
         </form>
         <Link className='flex justify-center md:mt-2'>
           <span className='text-white text-xs'>Already have account. Login</span>
