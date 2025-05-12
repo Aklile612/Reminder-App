@@ -20,7 +20,7 @@ const Login = () => {
       setloginMessage(true);
       const timeout = setTimeout(() => {
         navigator("/home")
-      }, 6000);
+      }, 3000);
   
       return () => clearTimeout(timeout);
     }
