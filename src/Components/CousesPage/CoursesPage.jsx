@@ -1,144 +1,130 @@
-import React, { useEffect, useState } from 'react'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
-import { FaAngleDown } from "react-icons/fa6";
-import { FaPlus } from "react-icons/fa6";
-import axios from '../../../axiosBase'
-
-
+import React, { useEffect, useState } from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { FaAngleDown, FaPlus } from "react-icons/fa6";
+import axios from '../../../axiosBase';
 
 const CoursesPage = () => {
-  const [link,setLink]=useState(false)
-  const [informationLink,setinformationLink]=useState(false)
-  const [openCourseIndex, setOpenCourseIndex] = useState(null)
-  const [selectedcourse,setselectedcourse]=useState(null)
-  const [selectedcalander,setselectedcalander]=useState(null)
-  const [departemtName,setdepartemntName]=useState([])
+  const [departments, setDepartments] = useState([]);
   const [openDepartmentId, setOpenDepartmentId] = useState(null);
-  const [departmentCourses,setdepartmentCourses]=useState({})
-  const courseName=[
-    {title:"Data structure and Algor.."},
-    {title:"Advanced DataBase"},
-    {title:"Statsics"},
-    {title:"Oop"},
-    {title:"History"},
-    {title:"ISR"}
-  ]
-  const courseName1=[
-    {title:"DLD"},
-    {title:"Electronics 2"},
-    {title:"Machine"},
-    {title:"Electronics Lab"},
-    {title:"DLD Workshop"},
-    {title:"DLD Lab"}
-  ]
-  const acadamictimes=[
-    {name:"Quiz"},
-    {name:"Assignment"},
-    {name:"Mid Exam"},
-    {name:"Final Exam"},
-  ]
-  const getDepartemnt=async()=>{
-    try {
-      const {data}=await axios.get('/course/finddepartment')
-      
-      setdepartemntName(data.department)
-      console.log(data.department)
-    } catch (error) {
-      console.log(error)
+  const [departmentCourses, setDepartmentCourses] = useState({});
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedCalendar, setSelectedCalendar] = useState(null);
+
+  const academicTimes = [
+    { name: "Quiz" },
+    { name: "Assignment" },
+    { name: "Mid Exam" },
+    { name: "Final Exam" },
+  ];
+
+  useEffect(() => {
+    const getDepartments = async () => {
+      try {
+        const { data } = await axios.get('/course/finddepartment');
+        setDepartments(data.department);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDepartments();
+  }, []);
+
+  const handleDepartmentClick = async (deptId) => {
+    const isOpen = openDepartmentId === deptId;
+    setOpenDepartmentId(isOpen ? null : deptId);
+
+    if (!departmentCourses[deptId]) {
+      try {
+        const { data } = await axios.get(`/course/findcourse/${deptId}`);
+        console.log(data)
+        setDepartmentCourses((prev) => ({ ...prev, [deptId]: data.courses }));
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
-  const getDepartemntCourses=async (department_id)=>{
-    try {
-      const {data}=await axios.get(`/course/findcourse/${department_id}`)
-      setdepartmentCourses(data.courses);
-      setOpenDepartmentId(department_id);
-      setLink(!(link));
-      console.log(data.courses)
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(()=>{
-    getDepartemnt();
-    
-  },[])
-  // console.log(selectedcourse,selectedcalander.name)
+  };
+
   return (
     <>
-      <Header/>
-    <div className='flex '>
-        
-      
-      {/* side bar  */}
-      <div className='w-[300px]   h-[100vh] bg-[#221f1fe3]'>
-          <div className=''>
-            <div className='flex flex-col md:gap-7 items-center justify-center'>
-              <div className='flex items-center md:mt-11 justify-center md:w-[150px] md:h-[50px] rounded-2xl hover:shadow-amber-500 hover:shadow-sm hover:-translate-y-1 bg-gray-300'>
-                <span className='font-bold'>Course Names</span>
-              </div>
-              <div className='flex flex-col'>
+      <Header />
+      <div className="flex">
+        {/* Sidebar */}
+        <div className="w-[300px] h-[100vh] bg-[#221f1fe3] overflow-y-auto p-4 text-white">
+          <div className="flex flex-col gap-6">
+            <div className="text-center bg-gray-300 text-black py-2 rounded-2xl font-bold">
+              Course Names
+            </div>
 
-              <div className="flex flex-col space-y-2">
-                {departemtName.map((department, index) => (
-                  <div
-                    key={index}
-                    className="md:w-[290px] md:h-[50px] bg-gray-400 flex items-center justify-between rounded-md shadow"
-                  >
-                    <span className="text-white font-semibold">{department.name}</span>
-                    <div className='md:mr-2 ' onClick={()=>{
-                      getDepartemntCourses(department._id)
-                    }}><FaAngleDown/></div>
+            {departments.map((department) => (
+              <div key={department._id}>
+                {/* Department Header */}
+                <div
+                  onClick={() => handleDepartmentClick(department._id)}
+                  className="flex justify-between items-center bg-gray-500 px-3 py-2 rounded-md cursor-pointer hover:bg-gray-600"
+                >
+                  <span className="font-semibold">{department.name}</span>
+                  <FaAngleDown />
+                </div>
 
-                    {link && (
-                      <div>
-                        {departmentCourses.map((course,index)=>(
-                          <div>
-                            <span>{course.name}</span>
+                {/* Courses under the department */}
+                {openDepartmentId === department._id && (
+                  <div className="ml-4 mt-2 space-y-2">
+                    {departmentCourses[department._id]?.length > 0 ? (
+                      departmentCourses[department._id].map((course) => (
+                        <div
+                          key={course._id}
+                          className="bg-white text-black px-3 py-1 rounded cursor-pointer hover:bg-gray-100"
+                          onClick={() => setSelectedCourse(course.name)}
+                        >
+                          <div className="flex justify-between items-center">
+                            <span>{course.coursename}</span>
+                            <FaPlus
+                              onClick={() => {
+                                setSelectedCalendar({ course: course.coursename });
+                              }}
+                              className="text-gray-700"
+                            />
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-sm italic text-gray-300">No courses found.</p>
                     )}
                   </div>
-                ))}
+                )}
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main Content */}
+        {selectedCourse && selectedCalendar && (
+          <div className="flex-1 flex justify-center items-center">
+            <div className="w-[400px] bg-[#a06767] rounded-lg p-6 shadow-lg space-y-4">
+              <h3 className="text-center text-white font-bold text-xl">
+                {selectedCourse}
+              </h3>
+              <p className="text-white text-center">
+                What is the topic and the title of the portion?
+              </p>
+              <form className="flex justify-center">
+                <input
+                  type="text"
+                  placeholder="Type here..."
+                  className="w-full px-4 py-2 rounded border border-white bg-transparent text-white placeholder-white"
+                />
+              </form>
+              <div className="text-white text-center">
+                Due Date?
               </div>
             </div>
           </div>
+        )}
       </div>
-
-      {/* main page */}
-      {selectedcourse && selectedcalander &&(
-
-        <div className=' md:ml-[20vw] md:mt-[20vh] w-[400px] h-[30vh] bg-[#a06767] '>
-          <div className='flex justify-center'>
-            
-            <span className='text-white font-bold text-lg'>{selectedcourse}</span>
-          </div>
-          <div>
-            <span className="text-md text-white flex justify-center">What is the topic and the tittle of the portion?</span>
-          </div>
-          <div >
-            <form action="">
-              <div className='flex justify-center mt-4'>
-                <input type="text" placeholder='Type here....' className='border-white  border-2 w-[350px] h-10 pl-4 pt-2' />
-              </div>
-            </form>
-            
-          </div>
-          <div>
-            <span>Due Date?</span>
-          </div>
-      </div>
-      )}
-    </div>
-      <div className=''>
-
-      <Footer/> 
-      </div>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default CoursesPage
+export default CoursesPage;
