@@ -7,7 +7,7 @@ const LandingPage = () => {
   return (
     <div className='flex justify-between'>
 
-    <div className=' flex bg-gray-200 w-[120vw]  '>
+    <div className=' flex  w-[120vw]  '>
       <div className=''>
         <SideBar/>
       </div>
