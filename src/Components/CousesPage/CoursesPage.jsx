@@ -128,14 +128,15 @@ const CoursesPage = () => {
                       <input
                         type="text"
                         placeholder="Enter topic or tittle"
-                        className="md:w-[35vw] md:-ml-5 py-2 rounded-[5px] border-[#e0dddd] bg-transparent text-black placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
+                        className="md:w-[35vw] md:-ml-5 py-2 rounded-[5px] border border-gray-300 bg-transparent text-black placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
                         />
                     </div>
-                    <div>
-                    <FaClock className='text-white' />
+                    <div className='md:w-[10vw]'>
+                    
+                    <span>Date</span>
                     <input
                       type="time"
-                      className='w-full h-10 border border-white rounded px-3 bg-white text-black'
+                      className='w- h-10 border flex justify-between border-black rounded px-3 bg-white text-black'
                     />  
                     </div>
                   </form>
