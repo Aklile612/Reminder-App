@@ -5,6 +5,7 @@ import { FaAngleDown, FaPlus } from "react-icons/fa6";
 import axios from '../../../axiosBase';
 import SideBar from '../SideBar/SideBar';
 import RightSideBar from '../Right Side Bar/RightSideBar';
+import { FaClock } from 'react-icons/fa';
 
 const CoursesPage = () => {
   const [departments, setDepartments] = useState([]);
@@ -105,33 +106,45 @@ const CoursesPage = () => {
           </div>
 
           {/* Main Content */}
-          {selectedCourse && (
-            <div className="flex-1 flex justify-center items-center">
-              <div className="space-y-4 flex-col">
-                <div className='md:w-[300px] md:h-[8vh] bg-[#ffffff]'>
-                  <h3 className="text-center text-black font-bold text-3xl font-serif">
-                    {selectedCourse}
-                  </h3>
-                </div>
-                <div className='md:w-[400px] md:h-[20px] bg-red-400'>
-
-                <p className="text-black text-center">
-                  What is the topic and the title of the portion?
-                </p>
-                <form className="flex justify-center">
-                  <input
-                    type="text"
-                    placeholder="Type here..."
-                    className="w-full px-4 py-2 rounded border border-black bg-transparent text-black placeholder-black"
-                    />
-                </form>
-                <div className="text-black text-center">
-                  Due Date?
-                </div>
+          <div className='md:w-[58.5vw] md:mt-[10vh]'>
+            {selectedCourse && (
+              <div className="flex-1 flex justify-center items-center">
+                <div className="space-y-4 flex-col">
+                  <div className='md:w-[40vw] md:h-[8vh] bg-[#ffffff] rounded-[10px] flex '>
+                    <h3 className=" md:ml-3 text-center text-black font-bold text-3xl font-serif">
+                      {selectedCourse}
+                    </h3>
+                  </div>
+                  <div className='md:w-[40vw] md:h-[50vh] flex flex-col gap-3 bg-[#ffffff]'>
+                    <div className='flex flex-col'>
+                      <span className='text-black md:ml-5 font-normal  text-[20px]'>Create Reminder</span>
+                    </div>
+                      <span className="text-black md:ml-6 ">
+                        Topic
+                      </span>
+                    
+                  <form className="flex flex-col items-center justify-center">
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Enter topic or tittle"
+                        className="md:w-[35vw] md:-ml-5 py-2 rounded-[5px] border-[#e0dddd] bg-transparent text-black placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
+                        />
+                    </div>
+                    <div>
+                    <FaClock className='text-white' />
+                    <input
+                      type="time"
+                      className='w-full h-10 border border-white rounded px-3 bg-white text-black'
+                    />  
+                    </div>
+                  </form>
+                  
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       <div>
         <RightSideBar/>
