@@ -34,6 +34,24 @@ const addCalander=async (req,res)=>{
     }
 
 }
+//delete an event
+const deleteCalander=async (req,res)=>{
+    const {calander_id}=req.params;
+
+    try {
+        const deleteEvent= await Calendar.findByIdAndDelete(calander_id);
+        if (!deleteEvent) {
+            return res.status(StatusCodes.NOT_FOUND).json({ message: 'Event not found' });
+          }
+      
+          res.status(StatusCodes.OK).json({ message: 'Calander deleted successfully', deleteEvent });
+    } catch (error) {
+        console.log(error);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"there is some issue with the server!"})   
+    }
+}
+
+
 
 // show all events
 const allevents=async (req,res)=>{
@@ -78,4 +96,4 @@ const allEventByCoursId=async (req,res)=>{
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message:"There was an issue fetching the details of the actions!"})
     }
 }
-export {addCalander,allevents,singleEventByCalander,allEventByCoursId}
+export {addCalander,allevents,singleEventByCalander,allEventByCoursId,deleteCalander}
