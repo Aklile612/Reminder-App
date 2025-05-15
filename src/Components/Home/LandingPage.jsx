@@ -42,11 +42,12 @@ const LandingPage = () => {
         <span className='text-2xl font-bold md:-pl-4 '>The Calander</span>
       </div>
       <div className='mt-[140px] ml-[] flex flex-col gap-2 md:-ml-[16vw]'>
-        {cardsData.map((card,index)=>(
+        {cardsData.slice(0,5).map((card,index)=>(
           <EventCard
              key={index}
              name={card.course.coursename}
              time={card.date}
+             reminder={card.remindertime}
           />
         ))}
       </div>
