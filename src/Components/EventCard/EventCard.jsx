@@ -5,6 +5,11 @@ import { MdDelete, MdOutlineAccessTimeFilled } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 const EventCard = ({name,time}) => {
+  const formattedTime = new Date(time).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
   return (
     <div className=' group hover:-translate-y-1 md:w-[50vw] shadow-md md:h-[25vh] border-[1px] rounded-[6px] border-amber-50 bg-[#ffffff] '>
       <div>
@@ -20,7 +25,7 @@ const EventCard = ({name,time}) => {
           </div>
         </div>
         <div className='flex flex-col md:gap-2 md:ml-5 md:mt-3'>
-          <span className='text-[#374151]'>DeadLine: {time}</span>
+          <span className='text-[#374151]'>DeadLine: {formattedTime}</span>
           <div className='flex justify-between'>
             <div className='flex  items-center md:gap-3'>
               <MdOutlineAccessTimeFilled className='text-[#374151]'/>
