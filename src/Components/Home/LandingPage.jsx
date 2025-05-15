@@ -7,12 +7,14 @@ import axios from '../../../axiosBase';
 const LandingPage = () => {
   
   const [cardsData,setcardsData]=useState([]);
+  const [totalLength,settotalLength]=useState()
   const getCalander = async ()=>{
 
     try {
       const {data}= await axios.get('/calander/allcalanders');
 
       setcardsData(data.findEvents)
+      settotalLength(data.findEvents.length)
 
     } catch (error) {
       console.log(error)
@@ -21,6 +23,10 @@ const LandingPage = () => {
   useEffect(()=>{
     getCalander()
   },[])
+  
+  const countPassedDeadlines=(value)=>{
+    
+  }
   
   console.log(cardsData)
 
@@ -40,13 +46,13 @@ const LandingPage = () => {
           <EventCard
              key={index}
              name={card.course.coursename}
-             time={card.remindertime}
+             time={card.date}
           />
         ))}
       </div>
     </div>
     <div className='bg-gray-200'>
-      <RightSideBar/>
+      <RightSideBar len={totalLength}/>
     </div>
     </div>
   )
