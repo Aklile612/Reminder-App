@@ -35,8 +35,14 @@ const LandingPage = () => {
       <div className='md:mt-5 md:ml-[10vw]'>
         <span className='text-2xl font-bold md:-pl-4 '>The Calander</span>
       </div>
-      <div className='mt-[140px] ml-[] flex md:-ml-[16vw]'>
-        <EventCard/>
+      <div className='mt-[140px] ml-[] flex flex-col gap-2 md:-ml-[16vw]'>
+        {cardsData.map((card,index)=>(
+          <EventCard
+             key={index}
+             name={card.course.coursename}
+             time={card.remindertime}
+          />
+        ))}
       </div>
     </div>
     <div className='bg-gray-200'>
