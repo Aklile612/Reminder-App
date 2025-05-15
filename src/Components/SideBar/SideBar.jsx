@@ -13,7 +13,7 @@ const SideBar = () => {
   ];
 
   return (
-    <div className='w-[250px] md:mt-1.5 h-[91vh] rounded-[5px] bg-[#1F2937]'>
+    <div className='w-[250px] md:mt-1.5 h-full md:mb-4 rounded-[5px] bg-[#1F2937]'>
       <div className='pt-10 flex flex-col md:gap-4'>
         {navItems.map((item) => (
           <Link
