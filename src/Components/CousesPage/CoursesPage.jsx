@@ -5,8 +5,7 @@ import { FaAngleDown, FaPlus } from "react-icons/fa6";
 import axios from '../../../axiosBase';
 import SideBar from '../SideBar/SideBar';
 import RightSideBar from '../Right Side Bar/RightSideBar';
-import { FaClock } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 
 const CoursesPage = () => {
   const [departments, setDepartments] = useState([]);
@@ -15,11 +14,78 @@ const CoursesPage = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedCalendar, setSelectedCalendar] = useState(null);
   const [calander,setcalander]=useState(false)
+  const [errmsg,seterrmsg]=useState("")
+  const [courseId,setcourseId]=useState("")
   const [formData,setformData]=useState({
-      "username":"",
-      "email":"",
-      "password":""
+      "title":"",
+      "date":"",
+      "remindertime":"",
+      "calander":""
     })
+  const handeleChange=(event)=>{
+      setformData({
+        ...formData,
+        [event.target.name]:event.target.value
+      })
+    }
+  const handleSubmit =async (event)=>{
+    event.preventDefault();
+    const titleValue=formData.title;
+    const dateValue=formData.date;
+    const remindertimeValue=formData.remindertime;
+    const calanderValue=formData.calander;
+
+    if (!titleValue || !dateValue || !remindertimeValue || !calanderValue){
+      alert("please enter all fileds")
+      return
+    }
+    const examDateISO = new Date(dateValue).toISOString();
+    const reminderDateISO = new Date(remindertimeValue).toISOString();
+    try {
+      const {data}=await axios.post(`/calander/addcalander/${courseId}`,{
+        topic:titleValue,
+        date:examDateISO,
+        remindertime:reminderDateISO,
+        [calanderValue.toLowerCase().replace(" ", "")]: calanderValue
+      })
+      alert("Reminder set successfully!");
+      setformData({
+        title: "",
+        date: "",
+        remindertime: "",
+        calendar: ""
+      });
+      setSelectedCourse(null)
+    } catch (error) {
+      if(error.response){
+        seterrmsg(error.response.data.message)
+        console.log(error.response.data)
+        alert(error.response.data.msg)
+      }
+    }
+  }
+  
+  console.log(courseId)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const academicTimes = [
     { name: "Quiz" },
@@ -94,7 +160,8 @@ const CoursesPage = () => {
                             <div className="flex justify-between items-center">
                               <span>{course.coursename}</span>
                               <FaPlus
-                                onClick={() => {setSelectedCourse(course.coursename)
+                                onClick={() => {setSelectedCourse(course.coursename);
+                                  setcourseId(course._id)
                                 }}
                                 className="text-gray-700"
                               />
@@ -129,10 +196,13 @@ const CoursesPage = () => {
                         Topic
                       </span>
                     
-                  <form className="flex flex-col md:gap-3 items-center justify-center">
+                  <form onSubmit={handleSubmit} className="flex flex-col md:gap-3 items-center justify-center">
                     <div>
                       <input
                         type="text"
+                        name='title'
+                        value={formData.title}
+                        onChange={handeleChange}
                         placeholder="Enter topic or tittle"
                         className="md:w-[35vw] md:-ml-5 py-2 rounded-[5px] border border-gray-300 bg-transparent text-black placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
                         />
@@ -140,17 +210,23 @@ const CoursesPage = () => {
                     <div className='flex  gap-4'>
 
                       <div className=''>
-                        <span>Time</span>
+                        <span>Date</span>
                         <input
-                          type="time"
-                          className='w-[10vw] h-10 border flex gap-[15vw] placeholder:bg-gray-300 justify-between border-black rounded   px-3 bg-white text-black'
+                          type="date"
+                          name='date'
+                          value={formData.date}
+                          onChange={handeleChange}
+                          className='w-[15vw] h-10 border flex gap-[15vw] placeholder:bg-gray-300 justify-between border-black rounded   px-3 bg-white text-black'
                           />  
                       </div>
                       <div className=''>
                       
-                        <span>Date</span>
+                        <span>Reminder Date</span>
                         <input
                           type="date"
+                          name="remindertime"
+                          value={formData.remindertime}
+                          onChange={handeleChange}
                           className='w-[15vw] h-10 border flex justify-between border-black rounded px-3 bg-white  text-black'
                           />  
                       </div>
@@ -158,7 +234,10 @@ const CoursesPage = () => {
                     <div className="flex flex-col">
                       <label className="mb-1 text-black font-medium text-center">Calendar Type</label>
                       <select
+                         name="calander"
                         className="w-[18vw] h-10 px-3 border border-black rounded bg-gray-200 text-black"
+                        value={formData.calander}
+                        onChange={handeleChange}
                         defaultValue=""
                       >
                         <option value="" disabled>Select type</option>
@@ -168,7 +247,7 @@ const CoursesPage = () => {
                         <option value="Final Exam">Final Exam</option>
                       </select>
                     </div>
-                    <button  className=' hover:ease-out hover:scale-110 transition-all delay-75  hover:border-2 flex justify-center items-center  md:w-[15vw] md:h-[50px] md:mt-[2vh] bg-[#1F2937] rounded-[6px]'>
+                    <button type='submit'  className=' hover:ease-out hover:scale-110 transition-all delay-75  hover:border-2 flex justify-center items-center  md:w-[15vw] md:h-[50px] md:mt-[2vh] bg-[#1F2937] rounded-[6px]'>
                         <span className='text-white font-bold text-sm'>Set Reminder</span>
                     </button>
 
