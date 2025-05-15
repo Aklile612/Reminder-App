@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import EventCard from '../EventCard/EventCard'
 import SideBar from '../SideBar/SideBar'
 import RightSideBar from '../Right Side Bar/RightSideBar'
+import axios from '../../../axiosBase';
 
 const LandingPage = () => {
+  
+  const [cardsData,setcardsData]=useState([]);
+  const getCalander = async ()=>{
+
+    try {
+      const {data}= await axios.get('/calander/allcalanders');
+
+      setcardsData(data.findEvents)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    getCalander()
+  },[])
+  
+  console.log(cardsData)
+
+
   return (
     <div className='flex justify-between'>
 
