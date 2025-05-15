@@ -3,13 +3,15 @@ import { BiSolidEdit } from 'react-icons/bi'
 import { GrFormNextLink } from 'react-icons/gr'
 import { MdDelete, MdOutlineAccessTimeFilled } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { getRemainingTime } from '../../../Backend/utils/dateUtils';
 
-const EventCard = ({name,time}) => {
+const EventCard = ({name,time,reminder}) => {
   const formattedTime = new Date(time).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
   });
+  const remaining = getRemainingTime(time);
   return (
     <div className=' group hover:-translate-y-1 md:w-[50vw] shadow-md md:h-[25vh] border-[1px] rounded-[6px] border-amber-50 bg-[#ffffff] '>
       <div>
@@ -29,7 +31,7 @@ const EventCard = ({name,time}) => {
           <div className='flex justify-between'>
             <div className='flex  items-center md:gap-3'>
               <MdOutlineAccessTimeFilled className='text-[#374151]'/>
-              <span className=' text-[#374151]'>Two weeks Remaining</span>
+              <span className=' text-[#374151]'>{remaining}</span>
             </div>
             <div className=''>
               <Link to="/courses" className='group ease-out hover:scale-110 transition-all delay-75  flex md:gap-2 justify-center items-center  md:w-[10vw] md:h-[30px] bg-[#1F2937] rounded-[3px] md:mr-7'>
