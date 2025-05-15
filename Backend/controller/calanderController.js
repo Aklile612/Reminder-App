@@ -38,7 +38,7 @@ const addCalander=async (req,res)=>{
 // show all events
 const allevents=async (req,res)=>{
     try {
-        const findEvents= await Calendar.find().sort({ date: -1 }).populate('course', 'coursename');
+        const findEvents= await Calendar.find().sort({ date: 1 }).populate('course', 'coursename');
         if (!findEvents || findEvents.length===0){
             return res.status(StatusCodes.OK).json({message:"No recent calanders"})
         }
