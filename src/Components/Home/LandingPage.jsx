@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import EventCard from '../EventCard/EventCard'
 import SideBar from '../SideBar/SideBar'
 import RightSideBar from '../Right Side Bar/RightSideBar'
 import axios from '../../../axiosBase';
+import { getRemainingTime } from '../../../Backend/utils/dateUtils';
+import { DeadlineState } from '../../App';
 
 const LandingPage = () => {
   
   const [cardsData,setcardsData]=useState([]);
   const [totalLength,settotalLength]=useState()
+  const {deadLine,setdeadLine}=useContext(DeadlineState)
   const getCalander = async ()=>{
 
     try {
@@ -15,7 +18,9 @@ const LandingPage = () => {
 
       setcardsData(data.findEvents)
       settotalLength(data.findEvents.length)
-
+      const each= data.findEvents
+      const expiredCount = each.filter(e => getRemainingTime(e.date) === 'Expired').length;
+      setdeadLine(expiredCount);
     } catch (error) {
       console.log(error)
     }
