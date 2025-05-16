@@ -13,7 +13,7 @@ import { useContext } from 'react'
 export const DeadlineState=createContext()
 function App() {
 
-  const [deadLine,setdeadLine]=useState()
+  const [deadLine,setdeadLine]=useState(0)
   return (
     <>
     <DeadlineState.Provider value={{deadLine,setdeadLine}}>
