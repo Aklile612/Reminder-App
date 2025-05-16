@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DeadlineState } from '../../App'
 
 const RightSideBar = ({len}) => {
+  const {deadLine}=useContext(DeadlineState)
   // console.log(len)
   return (
     <div className='w-[250px] md:mt-1.5 h-full rounded-[5px] py-7 bg-[#1F2937]'>
@@ -12,7 +14,7 @@ const RightSideBar = ({len}) => {
         </div>
         <div className='flex md:w-[180px] text-white font-semibold justify-between'>
           <span>Past Deadlines</span>
-          <span>8</span>
+          <span>{deadLine}</span>
         </div>
         <div className='flex md:w-[180px] text-white font-semibold justify-between'>
           <span>Upcoming Deadlines</span>
