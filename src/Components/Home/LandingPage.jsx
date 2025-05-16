@@ -24,9 +24,15 @@ const LandingPage = () => {
     getCalander()
   },[])
   
-  const countPassedDeadlines=(value)=>{
-    
-  }
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/calander/singlecalanderDelete/${id}`);
+      setcardsData((prev) => prev.filter(card => card._id !== id));
+      settotalLength((prev) => prev - 1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
   console.log(cardsData)
 
@@ -48,6 +54,8 @@ const LandingPage = () => {
              name={card.course.coursename}
              time={card.date}
              reminder={card.remindertime}
+             id={card._id}
+             onDelete={handleDelete}
           />
         ))}
       </div>
