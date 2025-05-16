@@ -18,16 +18,6 @@ const EventCard = ({id,name,time,reminder,onDelete}) => {
   });
   console.log(id)
   const remaining = getRemainingTime(time);
-  const deadLineDates=0;
-  useState(()=>{
-    const passedDeadLines=(d)=>{
-      if (d === 'Expired'){
-        deadLineDates+=1
-      }
-    }
-
-    passedDeadLines()
-  })
 
   return (
     <div className=' group hover:-translate-y-1 md:w-[50vw] shadow-md md:h-[25vh] border-[1px] rounded-[6px] border-amber-50 bg-[#ffffff] '>
