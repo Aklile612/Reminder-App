@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { BiSolidEdit } from 'react-icons/bi'
 import { GrFormNextLink } from 'react-icons/gr'
 import { MdDelete, MdOutlineAccessTimeFilled } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { getRemainingTime } from '../../../Backend/utils/dateUtils';
+import axios from '../../../axiosBase';
+import { DeadlineState } from '../../App'
 
-const EventCard = ({name,time,reminder}) => {
+
+const EventCard = ({id,name,time,reminder,onDelete}) => {
+  const [idHandler,setidHandler]=useState("")
+  const {deadLine,setdeadLine}=useContext(DeadlineState)
   const formattedTime = new Date(time).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
   });
+  console.log(id)
   const remaining = getRemainingTime(time);
+  const deadLineDates=0;
+  useState(()=>{
+    const passedDeadLines=(d)=>{
+      if (d === 'Expired'){
+        deadLineDates+=1
+      }
+    }
+
+    passedDeadLines()
+  })
+
   return (
     <div className=' group hover:-translate-y-1 md:w-[50vw] shadow-md md:h-[25vh] border-[1px] rounded-[6px] border-amber-50 bg-[#ffffff] '>
       <div>
@@ -21,9 +38,9 @@ const EventCard = ({name,time,reminder}) => {
           <Link className='md:w-7 flex justify-center md:h-7 items-center hover:bg-gray-200'> 
             <BiSolidEdit />
           </Link>
-          <Link className='md:w-7 flex justify-center md:h-7 items-center hover:bg-gray-200'>
+          <span onClick={() => onDelete(id)} className='md:w-7 flex justify-center md:h-7 items-center hover:bg-gray-200'>
           <MdDelete />
-          </Link>
+          </span>
           </div>
         </div>
         <div className='flex flex-col md:gap-2 md:ml-5 md:mt-3'>
