@@ -5,6 +5,7 @@ import { FaAngleDown, FaPlus } from "react-icons/fa6";
 import axios from '../../../axiosBase';
 import SideBar from '../SideBar/SideBar';
 import RightSideBar from '../Right Side Bar/RightSideBar';
+import SingleEvent from '../Single Event/SingleEvent';
 
 
 const CoursesPage = () => {
@@ -144,7 +145,7 @@ const CoursesPage = () => {
                     className="flex justify-between items-center bg-gray-500 px-3 py-2 rounded-md cursor-pointer hover:bg-gray-600"
                   >
                     <span className="font-semibold font-serif">{department.name}</span>
-                    <FaAngleDown />
+                    <FaAngleDown onClick={()=>setSelectedCourse(null)} />
                   </div>
 
                   {/* Courses under the department */}
@@ -180,6 +181,7 @@ const CoursesPage = () => {
 
           {/* Main Content */}
           <div className='md:w-[58.5vw] md:mt-[10vh]'>
+          {!selectedCourse && <SingleEvent/>}
             {selectedCourse && (
               <div className="flex-1 flex justify-center items-center">
                 <div className="space-y-4 flex-col">
