@@ -6,6 +6,7 @@ import axios from '../../../axiosBase';
 import SideBar from '../SideBar/SideBar';
 import RightSideBar from '../Right Side Bar/RightSideBar';
 import SingleEvent from '../Single Event/SingleEvent';
+import RightSideBarCourse from '../RightCourse/RightSideBarCourse.jsx';
 
 
 const CoursesPage = () => {
@@ -262,7 +263,7 @@ const CoursesPage = () => {
           </div>
         </div>
       <div>
-        <RightSideBar/>
+        <RightSideBarCourse/>
       </div>
       </div>
       <Footer />
