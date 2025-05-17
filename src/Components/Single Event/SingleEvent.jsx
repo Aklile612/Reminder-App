@@ -11,7 +11,7 @@ const SingleEvent = () => {
       <div className=' group hover:-translate-y-1 md:w-[27vw] md:ml-[10vw]  md:h-[45vh] border-[2px] rounded-[6px] border-gray-100 shadow-gray-300 shadow-[20px] bg-[#ffffff] '>
       <div className='md:ml-7'>
         <div className='  md:mt-4 flex flex-col gap-3 justify-center'>
-          <span className='text-2xl font-serif text-[18px] '>Data Structure And Algorizm</span>
+          <span className='text-2xl font-serif text-[23px] '>Data Structure And Algorizm</span>
           <div className='flex gap-3 text-[#1F2937]'>
             <span><IoMdTime className='md:mt-1' /></span>
             <span className='text-sm font-bold mt-0.5'>12 days left</span>
@@ -24,16 +24,16 @@ const SingleEvent = () => {
             </div>
             <div className='flex gap-3 text-[#1F2937]'>
                 <MdCalendarToday className='mt-0.5' />
-                <span className='text-sm font-semibold '>Course Date: 2025-o3-09</span>
+                <span className='text-sm font-semibold '>DeadLine Date: 2025-03-09</span>
             </div>
             <div className='flex gap-3 md:mt-2 text-[#1F2937]'>
                 <MdNotifications className='mt-0.5' />
                 <span className='text-sm font-semibold'>Reminder set for: 2025-03-05</span>
             </div>
-            <div className='flex gap-3 md:mt-4 text-[#1F2937]'>
-                <span className='text-sm font-semibold '>Want to know more about the topic</span>
+            <Link to='/aipage' className='flex gap-1 md:mt-4 text-[#1F2937]'>
+                <span className='text-sm font-semibold underline decoration-black '>Want to know more about the topic</span>
                 <BiLinkExternal className='font-semibold' />
-            </div>
+            </Link>
         </div>
         
       </div>
