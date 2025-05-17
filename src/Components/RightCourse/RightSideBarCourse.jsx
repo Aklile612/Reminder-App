@@ -1,27 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from '../../../axiosBase';
 
-const RightSideBar = () => {
+
+
+const RightSideBarCourse = () => {
+  const [sideBarData,setsideBarData]=useState([])
+  useEffect(()=>{
+    const getCourses=async ()=>{
+      try {
+        const {data}= await axios.get('/calander/allcalanders');
+        setsideBarData(data.findEvents)
+      } catch (error) {
+        console.log(object)
+      }
+    }
+    getCourses()
+  },[])
   return (
     <>
      <div className='w-[250px] md:mt-1.5 h-full rounded-[5px] py-7 bg-[#1F2937]'>
-      <div className='bg-gray-600 flex flex-col gap-2 items-center w-[200px] md:h-[150px] rounded-[3px] md:mt-5 md:ml-6'>
-        <span className='text-white font-mono text-lg '>Course Statstics</span>
-        <div className='flex md:w-[180px] text-white font-semibold justify-between'>
-          <span>Total Courses</span>
-          <span>{len}</span>
+        <div className='flex flex-col  justify-center  md:w-[200px] md:ml-5 md:h-auto'>
+          <div className=''>
+            <span className='text-white text-2xl font-mono'>Course Names</span>
+          </div>
+          <div className='md:mt-4 flex justify-center items-center md:gap-2 flex-col bg-gray-300'>
+            {sideBarData.map((side,index)=>(
+              <div className='' key={index}>{side.course.coursename}</div>
+            ))}
+          </div>
         </div>
-        <div className='flex md:w-[180px] text-white font-semibold justify-between'>
-          <span>Past Deadlines</span>
-          <span>{deadLine}</span>
-        </div>
-        <div className='flex md:w-[180px] text-white font-semibold justify-between'>
-          <span>Upcoming Deadlines</span>
-          <span>5</span>
-        </div>
-      </div>
     </div> 
     </>
   )
 }
 
-export default RightSideBar
+export default RightSideBarCourse
