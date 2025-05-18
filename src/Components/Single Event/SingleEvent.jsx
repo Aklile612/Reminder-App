@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BiLinkExternal, BiSolidEdit } from 'react-icons/bi'
 import { IoMdTime } from 'react-icons/io'
 import { IoListSharp } from 'react-icons/io5'
 import { MdCalendarToday, MdDelete, MdNotifications, MdOutlineAccessTimeFilled } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import { CalanderIdStore } from '../../App'
+import axios from '../../../axiosBase';
 
 const SingleEvent = () => {
+    const {calanderID,setcalanderId}=useContext(CalanderIdStore)
+    console.log(calanderID)
   return (
     <>
       <div className=' group hover:-translate-y-1 md:w-[27vw] md:ml-[10vw]  md:h-[45vh] border-[2px] rounded-[6px] border-gray-100 shadow-gray-300 shadow-[20px] bg-[#ffffff] '>
-      <div className='md:ml-7'>
+        {calanderID.map((cal,index)=>(
+
+        <div key={index} className='md:ml-7'>
         <div className='  md:mt-4 flex flex-col gap-3 justify-center'>
-          <span className='text-2xl font-serif text-[23px] '>Data Structure And Algorizm</span>
+          <span className='text-2xl font-serif text-[23px] '>{cal.course.coursename}</span>
           <div className='flex gap-3 text-[#1F2937]'>
             <span><IoMdTime className='md:mt-1' /></span>
             <span className='text-sm font-bold mt-0.5'>12 days left</span>
@@ -37,6 +43,7 @@ const SingleEvent = () => {
         </div>
         
       </div>
+      ))}
     </div>
     </>
   )
