@@ -67,7 +67,7 @@ const CoursesPage = () => {
     }
   }
   
-  console.log(courseId)
+  // console.log(courseId)
 
 
 
@@ -115,7 +115,7 @@ const CoursesPage = () => {
     if (!departmentCourses[deptId]) {
       try {
         const { data } = await axios.get(`/course/findcourse/${deptId}`);
-        console.log(data)
+        // console.log(data)
         setDepartmentCourses((prev) => ({ ...prev, [deptId]: data.courses }));
       } catch (error) {
         console.log(error);
@@ -123,7 +123,7 @@ const CoursesPage = () => {
     }
   };
   // console.log("1",selectedCalendar)
-  console.log("2",selectedCourse)
+  // console.log("2",selectedCourse)
 
   return (
     <>
