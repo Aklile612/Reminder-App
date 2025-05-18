@@ -5,6 +5,7 @@ import RightSideBar from '../Right Side Bar/RightSideBar'
 import axios from '../../../axiosBase';
 import { getRemainingTime } from '../../../Backend/utils/dateUtils';
 import { DeadlineState } from '../../App';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   
@@ -43,31 +44,39 @@ const LandingPage = () => {
 
 
   return (
-    <div className='flex justify-between'>
+    <div className='flex '>
 
-    <div className=' flex  w-[120vw]  '>
-      <div className=''>
-        <SideBar/>
-      </div>
-      <div className='md:mt-5 md:ml-[10vw]'>
-        <span className='text-2xl font-bold md:-pl-4 '>The Calander</span>
-      </div>
-      <div className='mt-[140px] ml-[] flex flex-col gap-2 md:-ml-[16vw]'>
-        {cardsData.slice(0,5).map((card,index)=>(
-          <EventCard
-             key={index}
-             name={card.course.coursename}
-             time={card.date}
-             reminder={card.remindertime}
-             id={card._id}
-             onDelete={handleDelete}
-          />
-        ))}
-      </div>
+<div className='flex justify-between'>
+  {/* Sidebar */}
+  <SideBar />
+
+  {/* Main content */}
+  <div className='flex flex-col flex-grow p-5'>
+    <div className='flex justify-between items-center'>
+      <div className='flex justify-center items-center text-2xl font-bold w-[13vw] h-[7vh] bg-gray-300 rounded-[5px]'>The Calendar</div>
+      <Link to='/courses' className='bg-[#1F2937] text-white px-3 py-1 rounded hover:scale-120 '>Add Reminder</Link>
     </div>
-    <div className='bg-gray-200'>
-      <RightSideBar len={totalLength}/>
+
+    <div className='mt-10 flex flex-col gap-2'>
+      {cardsData.slice(0, 5).map((card, index) => (
+        <EventCard
+          key={index}
+          name={card.course.coursename}
+          time={card.date}
+          reminder={card.remindertime}
+          id={card._id}
+          onDelete={handleDelete}
+        />
+      ))}
     </div>
+  </div>
+
+  {/* Right Sidebar */}
+  <div className='ml-30'>
+
+  <RightSideBar len={totalLength} />
+  </div>
+</div>
     </div>
   )
 }
