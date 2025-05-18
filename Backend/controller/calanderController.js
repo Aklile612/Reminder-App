@@ -72,7 +72,7 @@ const singleEventByCalander=async (req,res)=>{
     const {calander_id}=req.params;
 
     try {
-        const findSingleEvent= await Calendar.findById(calander_id);
+        const findSingleEvent= await Calendar.findById(calander_id).populate('course', 'coursename');
 
         if(!calander_id|| calander_id.length===0){
             return res.status(StatusCodes.OK).json({message:"No Details for this calander"})
