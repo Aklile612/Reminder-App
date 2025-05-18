@@ -9,7 +9,18 @@ const RightSideBarCourse = () => {
     const getCourses=async ()=>{
       try {
         const {data}= await axios.get('/calander/allcalanders');
-        setsideBarData(data.findEvents)
+        const uniqueCourses = [];
+        const courseNames = new Set();
+  
+        for (let item of data.findEvents) {
+          const courseName = item.course.coursename;
+          if (!courseNames.has(courseName)) {
+            courseNames.add(courseName);
+            uniqueCourses.push(item);
+          }
+        }
+  
+        setsideBarData(uniqueCourses);
       } catch (error) {
         console.log(object)
       }
@@ -23,9 +34,9 @@ const RightSideBarCourse = () => {
           <div className=''>
             <span className='text-white text-2xl font-mono'>Course Names</span>
           </div>
-          <div className='md:mt-4 flex justify-center items-center md:gap-2 flex-col bg-gray-300'>
+          <div className='md:mt-4 flex justify-center items-center md:gap-2 flex-col '>
             {sideBarData.map((side,index)=>(
-              <div className='' key={index}>{side.course.coursename}</div>
+              <div className='text-white flex justify-center font-semibold bg-gray-400  hover:bg-gray-600 hover:rounded-[6px] hover:scale-105 transition-all h-6 w-full ' key={index}>{side.course.coursename}</div>
             ))}
           </div>
         </div>
