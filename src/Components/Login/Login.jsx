@@ -11,7 +11,7 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
   const navigator=useNavigate();
   const [formData,setformData]=useState({
-    "username":"",
+  
     "email":"",
     "password":""
   })
@@ -33,17 +33,17 @@ const Login = () => {
   }
   const handleSubmit=async (event)=>{
     event.preventDefault();
-    const userValue=formData.username;
+
     const emailValue=formData.email;
     const passwordValue=formData.password;
 
-    if(!emailValue || !userValue || !passwordValue){
-      alert("lease enter a value");
+    if(!emailValue || !passwordValue){
+      alert("please enter a value");
       return;
     }
     try {
-      const {data}=await axios.post("/auth/signup",{
-        username:userValue,
+      const {data}=await axios.post("/auth/login",{
+        
         email:emailValue,
         password:passwordValue
       })
@@ -56,7 +56,7 @@ const Login = () => {
       if(error.response){
         seterrmsg(error.response.data.message)
         console.log(error.response.data)
-        alert(error.response.data.msg)
+        // alert(error.response.data.message)
       }
     }
 
@@ -65,27 +65,18 @@ const Login = () => {
     <div className='bg-[#111827] h-[100vh] w-[100vw]  flex justify-center items-center'>
       <div className='flex flex-col  w-[26vw] h-[80vh] bg-[#1F2937] rounded-[10px] border-amber-50 '>
         <div className='flex flex-col justify-center items-center gap-2 mb-10'>
-          <span className='text-white md:pt-5 text-3xl'>Register</span>
-          <span className='text-white text-sm'>Create Your Account</span>
+          <div className='text-red-600 font-semibold md:mt-3.5'>
+
+          {errmsg && errmsg}
+          </div>
+          <span className='text-white md:pt-5 text-3xl'>Login</span>
+          <span className='text-white text-sm'>Login To Your Account</span>
         </div>
         <div className='-mt-2 flex justify-center items-center text-green-500  text-sm  font-bold'>
           {loginMessage && "successfully Loged In.Redirecting to Home page"}
         </div>
         <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
-        <div className='flex flex-col'>
-            <span className='ml-5 text-white text-sm md:mb-2'>Username</span>
-            <div className='relative'>
-                <input 
-                className=' w-[300px] rounded-[6px] bg-[#374151] h-10 ml-5 pl-10 text-white placeholder-text-gray-500 placeholder:text-xs placeholder:font-bold' 
-                type="text"
-                name='username'
-                value={formData.username}
-                placeholder="Enter username"
-                onChange={handeleChange}
-                />
-                <FaUser className="absolute left-7 top-1/2 transform -translate-y-1/2 text-gray-500" /> 
-            </div>
-        </div>
+        
         <div className='flex flex-col'>
             <span className='ml-5 text-white text-sm md:mb-2'>Email</span>
             <div className='relative'>
@@ -118,11 +109,11 @@ const Login = () => {
           <button type='submit' 
             
             className='ml-5 md:mt-2 flex justify-center items-center group hover:scale-110 ease-out transition-all w-[300px] h-12 bg-gray-500 text-center  text-sm text-white font-semibold rounded-[6px]'>
-            <span>Create Account</span>
+            <span>Log In</span>
           </button>
         </form>
-        <Link className='flex justify-center md:mt-2'>
-          <span className='text-white text-xs'>Already have account. Login</span>
+        <Link to='/register' className='flex justify-center md:mt-2'>
+          <span className='text-white text-xs font-semibold underline decoration-amber-50'>Didn't have account? Regsiter</span>
         </Link>
       </div>
     </div>
