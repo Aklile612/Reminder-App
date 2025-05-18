@@ -11,12 +11,15 @@ import Login from './Components/Login/Login'
 import { useContext } from 'react'
 
 export const DeadlineState=createContext()
+export const CalanderIdStore=createContext()
 function App() {
 
   const [deadLine,setdeadLine]=useState(0)
+  const [calanderID,setcalanderId]=useState()
   return (
     <>
     <DeadlineState.Provider value={{deadLine,setdeadLine}}>
+      <CalanderIdStore.Provider value={{calanderID,setcalanderId}}>
 
       <Routes>
       <Route path='/home' element={<Home/>}/>
@@ -25,6 +28,7 @@ function App() {
       <Route path='/' element={<GetStarted/>}/>
       <Route path='/login' element={<Login/>}/>
       </Routes>
+      </CalanderIdStore.Provider>
     </DeadlineState.Provider>
     </>
   )
