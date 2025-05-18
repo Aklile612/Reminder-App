@@ -5,18 +5,28 @@ import { MdDelete, MdOutlineAccessTimeFilled } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { getRemainingTime } from '../../../Backend/utils/dateUtils';
 import axios from '../../../axiosBase';
-import { DeadlineState } from '../../App'
+import { CalanderIdStore, DeadlineState } from '../../App'
 
 
 const EventCard = ({id,name,time,reminder,onDelete}) => {
   const [idHandler,setidHandler]=useState("")
-  const {deadLine,setdeadLine}=useContext(DeadlineState)
+  const {calanderID,setcalanderId}=useContext(CalanderIdStore)
   const formattedTime = new Date(time).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
   });
-  console.log(id)
+  const getSingleCalanderInfo=async(calanderID)=>{
+    try {
+      const {data}=await axios.get(`/calander/singlecalanderdetail/${calanderID}`)
+
+      // console.log(data.findSingleEvent)
+      setcalanderId(data.findSingleEvent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   const remaining = getRemainingTime(time);
 
   return (
@@ -41,11 +51,13 @@ const EventCard = ({id,name,time,reminder,onDelete}) => {
               <span className=' text-[#374151]'>{remaining}</span>
             </div>
             <div className=''>
-              <Link to="/courses" className='group ease-out hover:scale-110 transition-all delay-75  flex md:gap-2 justify-center items-center  md:w-[10vw] md:h-[30px] bg-[#1F2937] rounded-[3px] md:mr-7'>
+              <Link to="/courses" onClick={()=>{
+                
+                getSingleCalanderInfo(id)}} className='group ease-out hover:scale-110 transition-all delay-75  flex md:gap-2 justify-center items-center  md:w-[10vw] md:h-[30px] bg-[#1F2937] rounded-[3px] md:mr-7'>
                 <span className='text-white font-bold text-sm '>View Details </span>
                 <span className='text-white'><GrFormNextLink /></span>
               </Link>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
