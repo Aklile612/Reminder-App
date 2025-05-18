@@ -9,6 +9,7 @@ import AssistantPage from './Components/Ai Assistant/AssistantPage'
 import GetStarted from './Components/Get Started/GetStarted'
 import Login from './Components/Login/Login'
 import { useContext } from 'react'
+import Register from './Components/Register/Register'
 
 export const DeadlineState=createContext()
 export const CalanderIdStore=createContext()
@@ -27,6 +28,7 @@ function App() {
       <Route path='/aipage' element={<AssistantPage/>}/>
       <Route path='/' element={<GetStarted/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/register' element={<Register/>}/>
       </Routes>
       </CalanderIdStore.Provider>
     </DeadlineState.Provider>
