@@ -7,6 +7,7 @@ import SideBar from '../SideBar/SideBar';
 import RightSideBar from '../Right Side Bar/RightSideBar';
 import SingleEvent from '../Single Event/SingleEvent';
 import RightSideBarCourse from '../RightCourse/RightSideBarCourse.jsx';
+import { useNavigate } from 'react-router-dom';
 
 
 const CoursesPage = () => {
@@ -17,6 +18,7 @@ const CoursesPage = () => {
   const [selectedCalendar, setSelectedCalendar] = useState(null);
   const [calander,setcalander]=useState(false)
   const [errmsg,seterrmsg]=useState("")
+  const navigate=useNavigate()
   const [courseId,setcourseId]=useState("")
   const [formData,setformData]=useState({
       "title":"",
@@ -58,6 +60,7 @@ const CoursesPage = () => {
         calendar: ""
       });
       setSelectedCourse(null)
+      navigate('/home')
     } catch (error) {
       if(error.response){
         seterrmsg(error.response.data.message)
@@ -86,15 +89,6 @@ const CoursesPage = () => {
 
 
 
-
-
-
-  const academicTimes = [
-    { name: "Quiz" },
-    { name: "Assignment" },
-    { name: "Mid Exam" },
-    { name: "Final Exam" },
-  ];
 
   useEffect(() => {
     const getDepartments = async () => {
@@ -132,7 +126,7 @@ const CoursesPage = () => {
 
         <div className="flex bg-gray-200">
           {/* Sidebar */}
-          <div className="w-[300px] h-[100vh] bg-[#221f1fe3] overflow-y-auto p-4 text-white">
+          <div className="w-[300px] h-[100vh] bg-[#1F2937] md:mt-1.5 rounded-[5px] overflow-y-auto p-4 text-white">
             <div className="flex flex-col gap-6">
               <div className="text-center bg-gray-300 text-black py-2 rounded-2xl font-bold">
                 Course Names
