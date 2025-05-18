@@ -12,6 +12,9 @@ export const signup=async (req,res)=>{
         if (existinguser){
             return res.status(StatusCodes.CONFLICT).json({message: "user already exists!"});
         }
+        if (password.lenght <= 8){
+            return res.status(StatusCodes.CONFLICT).json({message: "password character must be greater than 8"});
+        }
         const hashedpassword= await  bcrypt.hash(password,10);
         const newUser=new User({
             username:username,
