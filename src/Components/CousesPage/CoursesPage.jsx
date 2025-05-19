@@ -65,7 +65,7 @@ const CoursesPage = () => {
       if(error.response){
         seterrmsg(error.response.data.message)
         console.log(error.response.data)
-        alert(error.response.data.msg)
+        // alert(error.response.data.msg)
       }
     }
   }
@@ -240,8 +240,8 @@ const CoursesPage = () => {
                         <option value="" disabled>Select type</option>
                         <option value="Quiz">Quiz</option>
                         <option value="Assignment">Assignment</option>
-                        <option value="Mid Exam">Mid Exam</option>
-                        <option value="Final Exam">Final Exam</option>
+                        <option value="Mid">Mid Exam</option>
+                        <option value="Final">Final Exam</option>
                       </select>
                     </div>
                     <button type='submit'  className=' hover:ease-out hover:scale-110 transition-all delay-75  hover:border-2 flex justify-center items-center  md:w-[15vw] md:h-[50px] md:mt-[2vh] bg-[#1F2937] rounded-[6px]'>
