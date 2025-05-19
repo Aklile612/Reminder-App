@@ -200,7 +200,7 @@ const CoursesPage = () => {
                         name='title'
                         value={formData.title}
                         onChange={handeleChange}
-                        placeholder="Enter topic or tittle"
+                        placeholder="Enter the topic or tittle in very detail ..... "
                         className="md:w-[35vw] md:-ml-5 py-2 rounded-[5px] border border-gray-300 bg-transparent text-black placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
                         />
                     </div>
