@@ -58,23 +58,26 @@ const LandingPage = () => {
     </div>
 
     <div className='mt-10 flex flex-col gap-2'>
-      {cardsData.slice(0, 5).map((card, index) => (
-        <EventCard
-          key={index}
-          name={card.course.coursename}
-          time={card.date}
-          reminder={card.remindertime}
-          id={card._id}
-          onDelete={handleDelete}
-        />
-      ))}
+      
+    {cardsData && cardsData.length > 0 ? (
+      cardsData.slice(0, 5).map((card, index) => (
+    <EventCard
+      key={index}
+      name={card.course.coursename}
+      time={card.date}
+      reminder={card.remindertime}
+      id={card._id}
+      onDelete={handleDelete}
+    />
+  ))
+) : null}
     </div>
   </div>
 
   {/* Right Sidebar */}
   <div className='ml-30'>
 
-  <RightSideBar len={totalLength} />
+  <RightSideBar len={totalLength?totalLength:0} />
   </div>
 </div>
     </div>
