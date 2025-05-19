@@ -75,7 +75,7 @@ const AssistantPage = () => {
                   placeholder="Type Your Question Here......"
                   />
             </form>
-            <button type="button" 
+            <button type="submit" 
               onClick={callGeminiApi} className='text-3xl flex items-center justify-center rounded-[7px] cursor-pointer text-white md:w-[40px] md:h-[40px]  bg-[#374151]'>
               <IoIosSend />
             </button>
