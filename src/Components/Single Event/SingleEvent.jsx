@@ -74,7 +74,7 @@ const SingleEvent = () => {
                 <MdNotifications />
                 <span className='text-sm font-semibold'>Reminder: {formattedTime}</span>
               </div>
-              <Link href='/aipage' className='flex items-center gap-1 text-[#1F2937] mt-7'>
+              <Link to='/aipage' className='flex items-center gap-1 text-[#1F2937] mt-7'>
                 <span className='text-sm underline'>Want to know more about the topic</span>
                 <BiLinkExternal />
               </Link>
