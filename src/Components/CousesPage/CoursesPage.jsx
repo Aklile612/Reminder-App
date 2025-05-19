@@ -153,12 +153,11 @@ const CoursesPage = () => {
                             className="bg-white text-black px-3 py-1 rounded cursor-pointer hover:bg-gray-100"
                             onClick={() =>{} }
                           >
-                            <div className="flex justify-between items-center">
+                            <div onClick={() => {setSelectedCourse(course.coursename);
+                                  setcourseId(course._id)
+                                }} className="group flex justify-between items-center">
                               <span>{course.coursename}</span>
                               <FaPlus
-                                onClick={() => {setSelectedCourse(course.coursename);
-                                  setcourseId(course._id)
-                                }}
                                 className="text-gray-700"
                               />
                             </div>
