@@ -49,7 +49,7 @@ const RightSideBarCourse = () => {
           </div>
           <div className='md:mt-4 flex justify-center items-center md:gap-2 flex-col '>
             {sideBarData.map((side,index)=>(
-              <div className='text-white flex justify-center font-semibold bg-gray-400  hover:bg-gray-600 hover:rounded-[6px] hover:scale-105 transition-all h-6 w-full ' key={index} onClick={()=>getCalanderOnSingleCourse(side.course._id)}>{side.course.coursename}</div>
+              <div className='text-white flex justify-center font-semibold bg-gray-400  hover:bg-gray-600 hover:rounded-[6px] cursor-pointer hover:scale-105 transition-all h-6 w-full ' key={index} onClick={()=>getCalanderOnSingleCourse(side.course._id)}>{side.course.coursename}</div>
             ))}
           </div>
         </div>
