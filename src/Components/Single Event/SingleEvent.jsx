@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { CalanderIdStore } from '../../App'
 import axios from '../../../axiosBase';
 import { getRemainingTime } from '../../../Backend/utils/dateUtils'
+import { LuFileSpreadsheet } from 'react-icons/lu'
 
 const SingleEvent = () => {
   const { calanderID } = useContext(CalanderIdStore)
@@ -15,7 +16,7 @@ const SingleEvent = () => {
   : calanderID && typeof calanderID === 'object'
   ? [calanderID]
   : []
-  console.log(calanderID)
+  // console.log(calanderID)
   if (events.length === 0) {
     return <div className='text-center text-gray-500 mt-5'>No Course is Selected</div>
   }
@@ -27,6 +28,16 @@ const SingleEvent = () => {
     <div className='flex flex-wrap gap-4 md:ml-[5vw]'>
       {events.map((event, index) => {
         const { course, topic, date, remindertime } = event;
+        let type = "";
+        if (event.assignment) {
+          type = "Assignment";
+        } else if (event.quiz) {
+          type = "Quiz";
+        } else if (event.mid) {
+          type = "Mid";
+        } else {
+          type = "final";
+        }
         const remaining = getRemainingTime(date);
         const formattedDate = new Date(date).toLocaleDateString('en-US', {
           year: 'numeric',
@@ -40,7 +51,7 @@ const SingleEvent = () => {
         });
 
         return (
-          <div key={index} className='group hover:-translate-y-1 md:w-[27vw] md:h-[45vh] border-[2px] rounded-[6px] border-gray-100 shadow-gray-300 shadow-[20px] bg-[#ffffff] p-4'>
+          <div key={index} className='group hover:-translate-y-1 md:w-[25vw] md:h-[45vh] border-[2px] rounded-[6px] border-gray-100 shadow-gray-300 shadow-[20px] bg-[#ffffff] p-4'>
             <div>
               <div className='text-2xl font-serif'>{course.coursename}</div>
               <div className='flex gap-3 text-[#1F2937] my-4'>
@@ -50,6 +61,10 @@ const SingleEvent = () => {
               <div className='flex gap-3 text-[#1F2937] mt-2'>
                 <IoListSharp />
                 <span className='text-sm font-semibold'>Topic: {topic}</span>
+              </div>
+              <div className='flex gap-3 text-[#1F2937] mt-2'>
+                <LuFileSpreadsheet />
+                <span className='text-sm font-semibold'>Type: {type}</span>
               </div>
               <div className='flex gap-3 text-[#1F2937] mt-2'>
                 <MdCalendarToday />
