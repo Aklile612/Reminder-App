@@ -47,11 +47,14 @@ const AssistantPage = () => {
       <div>
         <SideBar/>
       </div>
-      <div className='md:w-[70vw]  md:h-[78vh] rounded-[3px] md:mx-[40px] md:mt-[50px] bg-[#353f4e]'>
+      <div className='md:w-[70vw]  md:min-h-[78vh] md:h-auto rounded-[3px] md:mx-[40px] md:mt-[50px] bg-[#353f4e]'>
         
         <div className='flex flex-col justify-between md:w-[55vw] md:my-4 rounded-[6px] md:min-h-[70vh] md:h-auto md:mx-[30px] bg-[#111827]'>
-          <div className='md:mt-4 md:ml-3.5  flex justify-end md:mr-[6vw]'>
-            <div className='text-white max-w-[70%]'>span</div>
+          <div className='md:mt-4 md:ml-3.5  flex flex-col  overflow-y-auto max-h-[500px] md:mr-[6vw]'>
+            <div className='text-white self-start bg-[#353F4E] min-h-10 rounded-[5px] md:min-w-[20vw] md:pl-3 md:w-auto font-mono h-[auto]'>Explain how ai works</div>
+            {responseText&&
+            <div className='text-white p-3  self-end max-w-[70%] font-semibold'>{responseText}</div>
+          }
           </div>
           <div className='flex md:gap-4'>
             <form className='md:mb-3'>
