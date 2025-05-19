@@ -48,10 +48,7 @@ const AssistantPage = () => {
         <SideBar/>
       </div>
       <div className='md:w-[70vw]  md:h-[78vh] rounded-[3px] md:mx-[40px] md:mt-[50px] bg-[#353f4e]'>
-        {/* <div className='flex gap-4 md:ml-3'>
-        <FaRobot className='text-[20px] text-white'/>
-        <span className='text-white font-serif'>Reminder Ai</span>
-        </div> */}
+        
         <div className='flex flex-col justify-between md:w-[55vw] md:my-4 rounded-[6px] md:min-h-[70vh] md:h-auto md:mx-[30px] bg-[#111827]'>
           <div className='md:mt-4 md:ml-3.5  flex justify-end md:mr-[6vw]'>
             <div className='text-white max-w-[70%]'>span</div>
