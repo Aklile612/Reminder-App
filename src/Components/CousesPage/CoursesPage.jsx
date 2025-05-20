@@ -186,7 +186,7 @@ const CoursesPage = () => {
                             onClick={() =>{} }
                           >
                             <div onClick={() => {setSelectedCourse(course.coursename);
-                                  
+                                  setcourseId(course._id);
                                 }} className="group flex justify-between items-center">
                               <span>{course.coursename}</span>
                               <FaPlus
