@@ -82,24 +82,25 @@ const CoursesPage = () => {
       const {data}= await axios.post('course/adddepartment',{
         department_name:departmentName
       })
+      navigate('/home')
     } catch (error) {
       console.log(error)
     }
-    navigate('/home')
     setdepartmentName('');
     setShowForm(false);
   };
+  const [addcourse,setaddcourse]=useState('')
   const handleSubmit2 = async(e) => {
     e.preventDefault();
     try {
-      const {data}= await axios.post(`course/addcourse${openDepartmentId}`,{
+      const {data}= await axios.post(`/course/addcourse/${addcourse}`,{
         coursename:courseName
       })
+      navigate('/home')
+      setcourseName('');
     } catch (error) {
       console.log(error)
     }
-    navigate('/home')
-    setcourseName('');
     setShowForm(false);
   };
 
@@ -135,6 +136,7 @@ const CoursesPage = () => {
   const handleDepartmentClick = async (deptId) => {
     const isOpen = openDepartmentId === deptId;
     setOpenDepartmentId(isOpen ? null : deptId);
+    setaddcourse(deptId);
 
     if (!departmentCourses[deptId]) {
       try {
@@ -170,7 +172,7 @@ const CoursesPage = () => {
                     className="flex justify-between items-center bg-gray-500 px-3 py-2 rounded-md cursor-pointer hover:bg-gray-600"
                   >
                     <span className="font-semibold font-serif">{department.name}</span>
-                    <FaAngleDown onClick={()=>setSelectedCourse(null)} />
+                    <FaAngleDown onClick={()=>{setSelectedCourse(null);setaddcourse(department._id)}} />
                   </div>
 
                   {/* Courses under the department */}
@@ -184,7 +186,7 @@ const CoursesPage = () => {
                             onClick={() =>{} }
                           >
                             <div onClick={() => {setSelectedCourse(course.coursename);
-                                  setcourseId(course._id)
+                                  
                                 }} className="group flex justify-between items-center">
                               <span>{course.coursename}</span>
                               <FaPlus
