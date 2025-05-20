@@ -8,6 +8,7 @@ import RightSideBar from '../Right Side Bar/RightSideBar';
 import SingleEvent from '../Single Event/SingleEvent';
 import RightSideBarCourse from '../RightCourse/RightSideBarCourse.jsx';
 import { useNavigate } from 'react-router-dom';
+import { IoAddSharp } from 'react-icons/io5';
 
 
 const CoursesPage = () => {
@@ -20,6 +21,10 @@ const CoursesPage = () => {
   const [errmsg,seterrmsg]=useState("")
   const navigate=useNavigate()
   const [courseId,setcourseId]=useState("")
+  const [showForm, setShowForm] = useState(false);
+  const [showForm1, setShowForm1] = useState(false);
+  const [departmentName, setdepartmentName] = useState('');
+  const [courseName,setcourseName]=useState('')
   const [formData,setformData]=useState({
       "title":"",
       "date":"",
@@ -71,7 +76,32 @@ const CoursesPage = () => {
   }
   
   // console.log(courseId)
-
+  const handleSubmit1 = async(e) => {
+    e.preventDefault();
+    try {
+      const {data}= await axios.post('course/adddepartment',{
+        department_name:departmentName
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    navigate('/home')
+    setdepartmentName('');
+    setShowForm(false);
+  };
+  const handleSubmit2 = async(e) => {
+    e.preventDefault();
+    try {
+      const {data}= await axios.post(`course/addcourse${openDepartmentId}`,{
+        coursename:courseName
+      })
+    } catch (error) {
+      console.log(error)
+    }
+    navigate('/home')
+    setcourseName('');
+    setShowForm(false);
+  };
 
 
 
@@ -161,16 +191,70 @@ const CoursesPage = () => {
                                 className="text-gray-700"
                               />
                             </div>
+                            
                           </div>
+
                         ))
                       ) : (
                         <p className="text-sm italic text-gray-300">No courses found.</p>
+                        
                       )}
+                      {showForm1 && (
+                        <form
+                          onSubmit={handleSubmit2}
+                          className="mt-4 w-full max-w-sm bg-white p-4 rounded shadow-md"
+                        >
+                          <input
+                            type="text"
+                            value={courseName}
+                            onChange={(e) => setcourseName(e.target.value)}
+                            placeholder="Enter course Name"
+                            className="w-full rounded-[5px] border border-gray-300 bg-transparent text-black py-3 mb-3 placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
+                            required
+                          />
+                          <button 
+                            type="submit"
+                            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                          >
+                            Submit
+                          </button>
+                        </form>
+                      )}
+                      <div onClick={() => setShowForm1(!showForm1)} className=' cursor-pointer hover:bg-gray-400  flex justify-center items-center   md:w-[15vw] md:h-[50px] md:mt-[4vh] bg-gray-500 rounded-[6px]'>
+                        <div><IoAddSharp className='text-2xl font-bold text-white' /></div>
+                        <span>Add Course</span>
+                      </div>
                     </div>
                   )}
+                  
                 </div>
+                
               ))}
             </div>
+              {showForm && (
+          <form
+            onSubmit={handleSubmit1}
+            className="mt-4 w-full max-w-sm bg-white p-4 rounded shadow-md"
+          >
+            <input
+              type="text"
+              value={departmentName}
+              onChange={(e) => setdepartmentName(e.target.value)}
+              placeholder="Enter Department Name"
+              className="w-full rounded-[5px] border border-gray-300 bg-transparent text-black py-3 mb-3 placeholder-[#b3adad] placeholder:pl-2.5 placeholder:font-bold"
+              required
+            />
+            <button 
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            >
+              Submit
+            </button>
+          </form>
+        )}
+          <div onClick={() => setShowForm(!showForm)} className=' cursor-pointer  md:ml-5  flex justify-center hover:bg-gray-400 items-center   md:w-[15vw] md:h-[50px] md:mt-[4vh] bg-gray-500 rounded-[6px]'>
+              <div><IoAddSharp className='text-2xl font-bold text-white' /></div>
+              <span>Add Department</span></div>
           </div>
 
           {/* Main Content */}
